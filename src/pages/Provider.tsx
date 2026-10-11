@@ -62,58 +62,96 @@ function ProviderView({ provider }: { provider: Provider }) {
 
   return (
     <AppShell>
-      {/* ------------------------------ Title ------------------------------ */}
-      <section className="shell pt-6 md:pt-8">
-        <nav className="flex items-center gap-1.5 text-[12.5px] font-medium text-ink-3">
-          <Link to="/experiences" className="hover:text-ink">
-            Experiences
-          </Link>
-          <ChevronRight className="h-3.5 w-3.5" />
-          <Link to={`/c/${cat.id}`} className="hover:text-ink">
-            {cat.shortName}
-          </Link>
-          <ChevronRight className="h-3.5 w-3.5" />
-          <span className="text-ink">{provider.name}</span>
-        </nav>
-        <div className="mt-4 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold" style={{ color: cat.theme.accent }}>
-                <CategoryIcon id={cat.id} className="h-4 w-4" /> {cat.name}
-              </span>
-              {provider.badges.map((b) => (
-                <Badge key={b} tone="neutral">
-                  {b}
-                </Badge>
-              ))}
-              <DemoTag />
-            </div>
-            <h1 className="mt-3 font-display text-[40px] leading-[1.02] tracking-tight md:text-[56px]">{provider.name}</h1>
-            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-[14px] text-ink-2">
-              <Stars value={provider.rating} count={provider.reviewCount} />
-              <span className="inline-flex items-center gap-1">
-                <MapPin className="h-4 w-4 text-ink-3" /> {provider.locationLabel}
-              </span>
-              {provider.arabicName && <span className="font-arabic text-[17px] text-ink-3">{provider.arabicName}</span>}
+      {/* ------------------------------ Title + 3D venue (hero) ------------------------------
+          The venue in 3D is the first thing guests see. Desktop: one grid — title across, viewer filling the
+          rest of the first screen, pins alongside. Phones/tablets: title + viewer fill the screen above the
+          fixed booking bar with the viewer taking what's left. Phones: 64px nav, bar top 129px from the bottom
+          (it sits on the tab bar); tablets: 72px nav, no tab bar, so the bar top is 69px from the bottom. */}
+      <section
+        className="shell lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:grid-rows-[auto_clamp(500px,calc(100svh_-_250px),780px)] lg:gap-x-4"
+        id="explore-3d"
+      >
+        <div className="flex min-h-[calc(100svh_-_193px)] flex-col pb-3 md:min-h-[calc(100svh_-_141px)] lg:contents">
+          <div className="pb-5 pt-5 md:pt-6 lg:col-span-2">
+            <nav className="hidden items-center gap-1.5 text-[12.5px] font-medium text-ink-3 sm:flex">
+              <Link to="/experiences" className="hover:text-ink">
+                Experiences
+              </Link>
+              <ChevronRight className="h-3.5 w-3.5" />
+              <Link to={`/c/${cat.id}`} className="hover:text-ink">
+                {cat.shortName}
+              </Link>
+              <ChevronRight className="h-3.5 w-3.5 shrink-0" />
+              <span className="truncate text-ink">{provider.name}</span>
+            </nav>
+            <div className="flex flex-col gap-3 sm:mt-3 md:flex-row md:items-end md:justify-between">
+              <div className="min-w-0">
+                <h1 className="font-display text-[32px] leading-[1.04] tracking-tight md:text-[44px]">{provider.name}</h1>
+                <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[14px] text-ink-2">
+                  <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold" style={{ color: cat.theme.accent }}>
+                    <CategoryIcon id={cat.id} className="h-4 w-4" /> {cat.name}
+                  </span>
+                  <Stars value={provider.rating} count={provider.reviewCount} />
+                  <span className="inline-flex items-center gap-1">
+                    <MapPin className="h-4 w-4 text-ink-3" /> {provider.locationLabel}
+                  </span>
+                  {provider.arabicName && <span className="font-arabic text-[17px] text-ink-3">{provider.arabicName}</span>}
+                  {provider.badges.length > 0 && (
+                    <span className="flex flex-wrap items-center gap-2">
+                      {provider.badges.map((b) => (
+                        <Badge key={b} tone="neutral">
+                          {b}
+                        </Badge>
+                      ))}
+                    </span>
+                  )}
+                  <DemoTag className="hidden md:inline-flex" />
+                </div>
+              </div>
+              {/* On phones the demo tag shares the actions row, keeping the header short so the 3D view stays in the first screen */}
+              <div className="flex shrink-0 items-center justify-between gap-2 md:justify-end">
+                <DemoTag className="md:hidden" />
+                <div className="flex items-center gap-2">
+                  <SaveButton id={provider.id} className="h-11 w-11 shadow-ring" />
+                  <Button variant="outline" to={`/p/${provider.slug}/shop`} icon={<Store className="h-4 w-4" />}>
+                    Host shop
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <SaveButton id={provider.id} className="h-11 w-11 shadow-ring" />
-            <Button variant="outline" to={`/p/${provider.slug}/shop`} icon={<Store className="h-4 w-4" />}>
-              Host shop
-            </Button>
+          <div className="relative min-h-[300px] flex-1 overflow-hidden rounded-[28px]">
+            <Suspense fallback={<div className="absolute inset-0 animate-pulse rounded-[28px]" style={{ background: cat.theme.gradient }} />}>
+              <ExperienceViewer provider={provider} active={active} onSelect={setActive} panel={false} className="absolute inset-0" />
+            </Suspense>
           </div>
         </div>
-      </section>
-
-      {/* ------------------------------ Gallery ------------------------------ */}
-      <section className="shell mt-6">
-        <div className="relative grid h-[300px] grid-cols-4 grid-rows-2 gap-2 overflow-hidden rounded-[28px] md:h-[460px]">
-          <SmartImage img={provider.hero} width={1400} className="col-span-4 row-span-2 md:col-span-2" category={provider.categoryId} priority />
-          {provider.gallery.slice(0, 4).map((g, i) => (
-            <SmartImage key={i} img={g} width={700} className={cn('hidden md:block', i > 1 && 'md:col-span-1')} category={provider.categoryId} />
-          ))}
-          <span className="absolute bottom-3 left-3 rounded-full bg-black/45 px-3 py-1 text-[11.5px] font-semibold text-white backdrop-blur-md">Illustrative photography</span>
+        <div className="mt-1 rounded-[28px] border border-line bg-white p-5 lg:mt-0 lg:min-h-0 lg:overflow-y-auto">
+          {activeRecord ? (
+            <HotspotDetails record={activeRecord} accent={cat.theme.accent} onClose={() => setActive(null)} />
+          ) : (
+            <div>
+              <div className="eyebrow">Step inside</div>
+              <h2 className="mt-1.5 font-display text-[22px] leading-tight tracking-tight">Explore {shortProviderName(provider.name)} in 3D</h2>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-ink-3">Tap a pin to see what happens there — details, prices and slots come straight from the host’s records.</p>
+              <div className="mt-5 text-[11px] font-bold uppercase tracking-[0.16em] text-ink-3">Inside this venue</div>
+              <div className="mt-2 space-y-1">
+                {provider.scene.hotspots.map((h, i) => (
+                  <button key={h.id} onClick={() => setActive(h.id)} className="group flex w-full items-center gap-3 rounded-2xl px-2.5 py-2.5 text-left transition hover:bg-sand-50">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[12px] font-bold text-white" style={{ background: cat.theme.accent }}>
+                      {i + 1}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[14px] font-semibold">{h.title}</span>
+                      <span className="block truncate text-[12.5px] text-ink-3">{h.kicker} · {h.summary}</span>
+                    </span>
+                    <ChevronRight className="h-4 w-4 text-ink-4 transition group-hover:translate-x-0.5" />
+                  </button>
+                ))}
+              </div>
+              <p className="mt-4 text-[11.5px] leading-relaxed text-ink-4">Rendered environments are illustrative previews, not verified representations of the property.</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -168,47 +206,15 @@ function ProviderView({ provider }: { provider: Provider }) {
             </div>
           </div>
 
-          {/* 3D venue */}
-          <div className="border-b border-line py-8" id="explore-3d">
-            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-              <div>
-                <div className="eyebrow">Step inside</div>
-                <h2 className="mt-2 font-display text-[28px] tracking-tight">Explore {shortProviderName(provider.name)} in 3D</h2>
-                <p className="mt-1 max-w-xl text-[14px] text-ink-3">
-                  Tap a pin to see what happens there — details, prices and slots come straight from the host’s records. Rendered environments are illustrative previews, not verified
-                  representations of the property.
-                </p>
-              </div>
-            </div>
-            <div className="mt-5 grid gap-4 xl:grid-cols-[1fr_320px]">
-              <div className="relative h-[420px] overflow-hidden rounded-[28px] md:h-[560px]">
-                <Suspense fallback={<div className="absolute inset-0 animate-pulse rounded-[28px]" style={{ background: cat.theme.gradient }} />}>
-                  <ExperienceViewer provider={provider} active={active} onSelect={setActive} panel={false} className="absolute inset-0" />
-                </Suspense>
-              </div>
-              <div className="rounded-[28px] border border-line bg-white p-5 xl:max-h-[560px] xl:overflow-y-auto">
-                {activeRecord ? (
-                  <HotspotDetails record={activeRecord} accent={cat.theme.accent} onClose={() => setActive(null)} />
-                ) : (
-                  <div>
-                    <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-ink-3">Inside this venue</div>
-                    <div className="mt-3 space-y-1.5">
-                      {provider.scene.hotspots.map((h, i) => (
-                        <button key={h.id} onClick={() => setActive(h.id)} className="group flex w-full items-center gap-3 rounded-2xl px-2.5 py-2.5 text-left transition hover:bg-sand-50">
-                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[12px] font-bold text-white" style={{ background: cat.theme.accent }}>
-                            {i + 1}
-                          </span>
-                          <span className="min-w-0 flex-1">
-                            <span className="block text-[14px] font-semibold">{h.title}</span>
-                            <span className="block truncate text-[12.5px] text-ink-3">{h.kicker} · {h.summary}</span>
-                          </span>
-                          <ChevronRight className="h-4 w-4 text-ink-4 transition group-hover:translate-x-0.5" />
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+          {/* Photos */}
+          <div className="border-b border-line py-8">
+            <h2 className="font-display text-[28px] tracking-tight">A look around</h2>
+            <div className="relative mt-5 grid h-[280px] grid-cols-4 grid-rows-2 gap-2 overflow-hidden rounded-[24px] md:h-[400px]">
+              <SmartImage img={provider.hero} width={1100} className="col-span-4 row-span-2 md:col-span-2" category={provider.categoryId} />
+              {provider.gallery.slice(0, 4).map((g, i) => (
+                <SmartImage key={i} img={g} width={600} className={cn('hidden md:block', i > 1 && 'md:col-span-1')} category={provider.categoryId} />
+              ))}
+              <span className="absolute bottom-3 left-3 rounded-full bg-black/45 px-3 py-1 text-[11.5px] font-semibold text-white backdrop-blur-md">Illustrative photography</span>
             </div>
           </div>
 
@@ -383,7 +389,7 @@ function ProviderView({ provider }: { provider: Provider }) {
       </section>
 
       {/* Mobile booking bar */}
-      <div className="fixed inset-x-0 bottom-[60px] z-30 border-t border-line bg-paper/95 px-4 py-3 backdrop-blur-xl lg:hidden">
+      <div className="fixed inset-x-0 bottom-[60px] z-30 border-t border-line bg-paper/95 px-4 py-3 backdrop-blur-xl md:bottom-0 md:pb-[calc(0.75rem+env(safe-area-inset-bottom))] lg:hidden">
         <div className="flex items-center justify-between gap-3">
           <div>
             <div className="text-[12px] text-ink-3">From</div>

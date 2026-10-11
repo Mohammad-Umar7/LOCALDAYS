@@ -82,7 +82,8 @@ export function ExperienceViewer({ provider, className, active: activeProp, onSe
       data-viewer
       className={cn(
         'relative overflow-hidden',
-        expanded ? 'fixed inset-0 z-[75] rounded-none' : 'rounded-[28px]',
+        // `isolate` keeps the overlay layers (z-45 chips, pins) inside the viewer so fixed page bars stay on top
+        expanded ? 'fixed inset-0 z-[75] rounded-none' : 'isolate rounded-[28px]',
         dark ? 'bg-[#1b140e]' : 'bg-sand-200',
         !expanded && className,
       )}
