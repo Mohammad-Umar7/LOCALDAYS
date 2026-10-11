@@ -1,4 +1,4 @@
-# LocalDays — *Don’t Just Visit. Live It.*
+# Fadhal — *Don’t Just Visit. Live It.*
 
 Experience-driven local commerce for Sharjah. Guests discover and book five living traditions — farms, beekeeping, pottery, coastal life and oud & fragrance — step inside each venue in interactive 3D, and then **keep buying from the people they met**: produce boxes, honey by batch, commissioned ceramics and their own saved fragrance formula.
 
@@ -53,9 +53,9 @@ Also worth a minute:
 - **Interactive 3D venues** — React Three Fiber, procedural PBR materials, instancing, post-processing, adaptive quality, and shader programs compiled in parallel before the first frame (each venue opens in under two seconds). `src/three/scenes/{farm,apiary,pottery,harbour,atelier}`. Hotspots and their panels (photos, prices, live open dates) read from provider records.
 - **Booking engine** — deterministic availability, 10-minute holds, VAT-inclusive AED pricing, guest checkout or account, booking references, `.ics` export. `src/services/availability.ts`, `pricing.ts`, `src/store/app.ts`.
 - **After the visit** — per-host storefronts, subscriptions with capacity caps, reorder-by-batch honey, pottery commissions with kiln stages, Signature Blends limited to the maker’s approved formulas.
-- **LocalDays Passport** — stamps only for host-verified check-ins; challenges and rewards with a named funder and a hard cap. No XP, no leaderboard.
+- **Fadhal Passport** — stamps only for host-verified check-ins; challenges and rewards with a named funder and a hard cap. No XP, no leaderboard.
 - **Business model** — 12% experience commission, 10% product commission, optional AED 199/month Pro plan, and capped prepaid experiences (customer-funded, refundable, tracked as obligations — never as profit). All rates live in `src/config/economics.ts`.
-- **AI, without a chatbot** — *LocalDays Intelligence* runs on-device:
+- **AI, without a chatbot** — *Fadhal Intelligence* runs on-device:
   - **Day Composer** parses a request into explicit constraints and plans over live slots, drive times, midday heat and budget, explaining every choice.
   - **Harvest & Demand Intelligence** uses deterministic inventory maths; language is used only to explain and recommend. No invented accuracy figures.
 
