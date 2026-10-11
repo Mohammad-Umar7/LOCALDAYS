@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 interface Props {
   img?: Pick<ImageRef, 'key' | 'i' | 'alt'> | null;
-  /** Aspect ratio used for crop requests, e.g. 4/5 */
+  /** Aspect ratio of the box, e.g. 4/5 (local photos are uncropped; object-fit: cover crops them) */
   aspect?: number;
   width?: number;
   sizes?: string;
@@ -20,13 +20,13 @@ interface Props {
 
 /**
  * Lazy, responsive photo with a warm placeholder and an intentional
- * branded fallback if the CDN is unreachable (offline demos).
+ * branded fallback if a photo fails to load.
  */
-export function SmartImage({ img, aspect, width = 1200, sizes = '100vw', className, imgClassName, category, priority, style, zoom }: Props) {
+export function SmartImage({ img, width = 1200, sizes = '100vw', className, imgClassName, category, priority, style, zoom }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
-  const src = imageUrl(img, width, aspect ? Math.round(width / aspect) : undefined);
-  const srcSet = imageSrcSet(img, [400, 700, 1000, 1400, 1900].filter((w) => w <= width * 1.6), aspect);
+  const src = imageUrl(img, width);
+  const srcSet = imageSrcSet(img);
   const theme = category ? CATEGORY_BY_ID[category].theme : null;
 
   return (

@@ -8,19 +8,22 @@ export function photoFor(ref?: Pick<ImageRef, 'key' | 'i'> | null) {
   return list[(ref.i ?? 0) % list.length];
 }
 
-/** Builds an Unsplash CDN URL at the requested size. */
-export function imageUrl(ref: Pick<ImageRef, 'key' | 'i'> | null | undefined, w = 1200, h?: number, q = 72) {
+/** Widths saved in public/photos by scripts/download-photos.mjs, so photos load without internet. */
+const LOCAL_WIDTHS = [800, 1600] as const;
+const localUrl = (id: string, w: (typeof LOCAL_WIDTHS)[number]) => `/photos/${id}-${w}.avif`;
+
+/**
+ * The local copy of a photo that best covers the requested width. Copies are uncropped:
+ * images render with object-fit: cover, so the crop happens in CSS.
+ */
+export function imageUrl(ref: Pick<ImageRef, 'key' | 'i'> | null | undefined, w = 1200) {
   const p = photoFor(ref);
   if (!p) return null;
-  return `https://images.unsplash.com/${p.id}?auto=format&fit=crop&crop=entropy&w=${w}${h ? `&h=${h}` : ''}&q=${q}`;
+  return localUrl(p.id, LOCAL_WIDTHS.find((lw) => lw >= w) ?? LOCAL_WIDTHS[LOCAL_WIDTHS.length - 1]);
 }
 
-export function imageSrcSet(ref: Pick<ImageRef, 'key' | 'i'> | null | undefined, widths: number[], aspect?: number) {
-  return widths
-    .map((w) => {
-      const u = imageUrl(ref, w, aspect ? Math.round(w / aspect) : undefined);
-      return u ? `${u} ${w}w` : '';
-    })
-    .filter(Boolean)
-    .join(', ');
+export function imageSrcSet(ref: Pick<ImageRef, 'key' | 'i'> | null | undefined) {
+  const p = photoFor(ref);
+  if (!p) return '';
+  return LOCAL_WIDTHS.map((w) => `${localUrl(p.id, w)} ${w}w`).join(', ');
 }

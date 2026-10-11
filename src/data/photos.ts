@@ -1,4 +1,4 @@
-/* Curated, free-licence Unsplash photography (hotlinked, never re-hosted). */
+/* Curated, free-licence Unsplash photography, saved to public/photos by scripts/download-photos.mjs. */
 /* Every URL was verified to load. Photos are illustrative and do not depict the fictional demo hosts. */
 
 export interface Photo {

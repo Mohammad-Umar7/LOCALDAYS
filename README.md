@@ -2,7 +2,7 @@
 
 Experience-driven local commerce for Sharjah. Guests discover and book five living traditions (farms, beekeeping, pottery, coastal life, and oud & fragrance), step inside each venue in interactive 3D, and then **keep buying from the people they met**: produce boxes, honey by batch, commissioned ceramics and their own saved fragrance formula.
 
-> Demo build for the Sharjah Tourism Innovation Hackathon. All hosts, prices, reviews and metrics are fictional and clearly labelled. 3D venues are illustrative previews. Payments are simulated. No API keys, no backend: everything runs in the browser.
+> Demo build for the Sharjah Tourism Innovation Hackathon. All hosts, prices, reviews and metrics are fictional and clearly labelled. 3D venues are illustrative previews. Payments are simulated. No API keys, no backend, no internet needed: everything runs in the browser.
 
 ---
 
@@ -90,7 +90,7 @@ The master artwork lives in `src/assets/brand/source/fadhal-logo.jpg`. Running `
 
 ## Tech
 
-Vite · React 18 · TypeScript · Tailwind · Zustand · Framer Motion · Three.js / React Three Fiber / drei / postprocessing · d3-shape. Photography is free-licence Unsplash, hotlinked and labelled as illustrative.
+Vite · React 18 · TypeScript · Tailwind · Zustand · Framer Motion · Three.js / React Three Fiber / drei / postprocessing · d3-shape. Photography is free-licence Unsplash, saved in `public/photos/` so the app works offline, and labelled as illustrative.
 
 ## QA scripts
 
@@ -104,5 +104,6 @@ Headless-Chrome checks used during development (run with the dev server on :5173
 | `node scripts/hotspots.mjs <provider-slug> <outDir> [--mobile]` | Opens every 3D hotspot and screenshots its panel |
 | `node scripts/scene-timing.mjs [baseUrl] <slug>…` | Time until each 3D venue is interactive |
 | `node scripts/composer-test.mjs ["prompt"…]` | Runs plain-English prompts through the Day Composer |
+| `node scripts/download-photos.mjs [--force]` | Saves every photo in `src/data/photos.ts` to `public/photos/` (run it after adding photos) |
 | `node scripts/render-posters.mjs [providerId…]` | Re-renders the opening stills in `public/posters/` (all 15 hosts, or the ones named) |
 | `node scripts/shot.mjs <path> <out.png> [--mobile] [--pages N]` | Screenshot any route (prints 3D renderer stats on `/dev/scene/*`) |
