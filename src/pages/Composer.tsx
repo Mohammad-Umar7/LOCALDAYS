@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, Car, Check, ChevronDown, Clock, Loader2, MapPin, Mic, MicOff, RefreshCw, Repeat2, ShieldCheck, Sparkles, Users, UtensilsCrossed, Wallet, Wand2, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { AppShell } from '@/components/layout/AppShell';
 import { Button } from '@/components/ui/Button';
 import { SmartImage } from '@/components/ui/SmartImage';
@@ -462,13 +462,19 @@ function PlanView({ plan, onAnother, setPlan }: { plan: DayPlan; onAnother: () =
                     <div className="tabular rounded-full bg-ink px-2.5 py-1 text-[12px] font-bold text-paper">{fmtTime(s.time).replace(' ', '')}</div>
                     <div className="mt-1 text-[11px] text-ink-3">to {fmtTime(s.end).replace(' ', '')}</div>
                   </div>
-                  <div className="flex min-w-0 flex-1 flex-col gap-4 rounded-[26px] border border-line bg-white p-3 sm:flex-row">
+                  {/* Whole card opens the venue (stretched link on the title); Swap sits above it */}
+                  <div className="group relative flex min-w-0 flex-1 flex-col gap-4 rounded-[26px] border border-line bg-white p-3 transition hover:border-ink/25 hover:shadow-soft sm:flex-row">
                     <SmartImage img={s.experience.image} aspect={4 / 3} width={460} className="aspect-[16/9] shrink-0 rounded-[20px] sm:aspect-[4/3] sm:w-[190px]" category={s.experience.categoryId} />
                     <div className="min-w-0 flex-1 px-1 pb-1 sm:py-1.5 sm:pr-2">
                       <div className="flex flex-wrap items-center gap-2 text-[12px] font-semibold" style={{ color: cat.theme.accent }}>
                         <CategoryIcon id={cat.id} className="h-3.5 w-3.5" /> {cat.shortName} · {p.name}
                       </div>
-                      <div className="mt-1 font-display text-[21px] leading-tight tracking-tight">{s.experience.title}</div>
+                      <Link
+                        to={`/p/${p.slug}`}
+                        className="mt-1 block font-display text-[21px] leading-tight tracking-tight after:absolute after:inset-0 after:rounded-[26px] after:content-[''] group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4"
+                      >
+                        {s.experience.title}
+                      </Link>
                       <div className="mt-2 flex flex-wrap gap-1.5">
                         {s.reasons.map((r) => (
                           <span key={r} className="rounded-full bg-sand-50 px-2.5 py-1 text-[11.5px] font-semibold text-ink-2 ring-1 ring-inset ring-line">
@@ -480,7 +486,7 @@ function PlanView({ plan, onAnother, setPlan }: { plan: DayPlan; onAnother: () =
                         <span className="tabular text-[15px] font-semibold">
                           {aed(s.price)} <span className="text-[12px] font-normal text-ink-3">for {guests}</span>
                         </span>
-                        <button onClick={() => setSwapIdx(i)} className="inline-flex items-center gap-1 rounded-full border border-line px-3 py-1.5 text-[12.5px] font-semibold hover:border-ink">
+                        <button onClick={() => setSwapIdx(i)} className="relative z-10 inline-flex items-center gap-1 rounded-full border border-line bg-white px-3 py-1.5 text-[12.5px] font-semibold hover:border-ink">
                           <Repeat2 className="h-3.5 w-3.5" /> Swap
                         </button>
                       </div>
