@@ -55,7 +55,7 @@ export default function Passport() {
                 <div className="relative">
                   <div className="flex items-center justify-between">
                     <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-ink-3">Identity page</div>
-                    <LogoMark className="h-7 w-7" />
+                    <LogoMark className="h-7" />
                   </div>
                   {user ? (
                     <>
@@ -163,13 +163,7 @@ export default function Passport() {
                 <div className="absolute inset-3 rounded-[16px] border border-brass-400/40" />
                 <div className="relative flex h-full flex-col items-center justify-center text-center">
                   <div className="font-arabic text-[30px] text-brass-300/90">{BRAND.nameArabic}</div>
-                  <div className="mt-6 flex h-20 w-20 items-center justify-center rounded-full border border-brass-400/60">
-                    <svg viewBox="0 0 64 64" className="h-12 w-12" aria-hidden>
-                      <path d="M19 49V30.5C19 23.04 24.82 17 32 17s13 6.04 13 13.5V49" fill="none" stroke="#E2C893" strokeWidth="3" strokeLinecap="round" />
-                      <path d="M24.5 42.5a7.5 7.5 0 0 1 15 0z" fill="#E2C893" />
-                      <path d="M14 49h36" stroke="#E2C893" strokeWidth="3" strokeLinecap="round" />
-                    </svg>
-                  </div>
+                  <LogoMark tone="foil" className="mt-7 h-14" />
                   <div className="mt-6 text-[13px] font-bold uppercase tracking-[0.4em] text-brass-300">Passport</div>
                   <div className="mt-1 font-display text-[22px] text-paper">{BRAND.name}</div>
                   <div className="mt-8 rounded-full border border-brass-400/50 px-4 py-2 text-[12px] font-semibold text-brass-300">Tap to open</div>

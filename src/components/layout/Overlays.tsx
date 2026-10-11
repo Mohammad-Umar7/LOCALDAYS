@@ -43,7 +43,7 @@ export function AuthModal() {
   return (
     <Modal open={open} onClose={close}>
       <div className="p-7 sm:p-9">
-        <LogoMark className="h-11 w-11" />
+        <LogoMark className="h-12" />
         <h2 className="mt-5 font-display text-[30px] leading-tight tracking-tight">Welcome to LocalDays</h2>
         <p className="mt-2 text-[14.5px] text-ink-2">Save experiences, collect Passport stamps and reorder from the hosts you visit.</p>
         {!sent ? (

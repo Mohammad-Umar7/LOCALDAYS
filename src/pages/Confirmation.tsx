@@ -9,7 +9,7 @@ import { SmartImage } from '@/components/ui/SmartImage';
 import { Modal } from '@/components/ui/overlays';
 import { ProductCard } from '@/components/cards/Cards';
 import { Stamp } from '@/components/passport/Stamp';
-import { LogoMark } from '@/components/brand/Logo';
+import { LogoIcon } from '@/components/brand/Logo';
 import { CATEGORY_BY_ID } from '@/data/categories';
 import { EXPERIENCE_BY_ID, PRESALE_BY_ID, PRODUCT_BY_ID, PROVIDER_BY_ID, productsForProvider } from '@/data/catalog';
 import type { Booking, Order } from '@/data/types';
@@ -327,7 +327,7 @@ export default function Confirmation() {
           <div className="text-[12px] text-ink-3">Preview · simulated email · not sent</div>
           <div className="mt-3 overflow-hidden rounded-2xl bg-white shadow-soft">
             <div className="flex items-center gap-3 border-b border-line p-5">
-              <LogoMark className="h-9 w-9" />
+              <LogoIcon className="h-9 w-9" />
               <div>
                 <div className="text-[13px] font-semibold">LocalDays</div>
                 <div className="text-[12px] text-ink-3">to {first?.customer.email ?? data.order?.customer.email}</div>

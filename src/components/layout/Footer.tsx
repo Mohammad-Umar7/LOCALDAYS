@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { BRAND } from '@/config/brand';
 import { CATEGORIES } from '@/data/categories';
-import { LogoMark } from '../brand/Logo';
+import { Logo } from '../brand/Logo';
 
 export function Footer() {
   return (
@@ -10,8 +10,8 @@ export function Footer() {
       <div className="shell relative">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-3">
-              <LogoMark className="h-10 w-10" />
+            <div className="flex items-center gap-5">
+              <Logo dark className="h-16 md:h-[72px]" />
               <span className="font-arabic text-2xl text-paper/50">{BRAND.nameArabic}</span>
             </div>
             <p className="mt-6 max-w-sm font-display text-[28px] leading-[1.1] tracking-tight text-paper">

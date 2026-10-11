@@ -63,6 +63,7 @@ Also worth a minute:
 
 - Product name, Arabic name and tagline: `src/config/brand.ts`
 - Commission, Pro price, VAT, hold time, presale guard-rails: `src/config/economics.ts`
+- Logo: master artwork in `src/assets/brand/source/`. `python scripts/brand-assets.py` (Pillow, numpy, scipy) rebuilds the transparent cut-outs, the favicon and the app icons from it
 
 ## Tech
 

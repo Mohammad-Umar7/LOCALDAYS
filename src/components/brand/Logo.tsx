@@ -1,29 +1,40 @@
 import { BRAND } from '@/config/brand';
 import { cn } from '@/lib/utils';
+import logoInk from '@/assets/brand/localdays-logo.png';
+import logoLight from '@/assets/brand/localdays-logo-light.png';
+import markInk from '@/assets/brand/localdays-mark.png';
+import markLight from '@/assets/brand/localdays-mark-light.png';
+import markFoil from '@/assets/brand/localdays-mark-foil.png';
+import icon from '@/assets/brand/localdays-icon.png';
 
-/** Arch + rising sun: a doorway into a local day. */
-export function LogoMark({ className, tone = 'clay' }: { className?: string; tone?: 'clay' | 'light' | 'dark' }) {
-  const bg = tone === 'clay' ? '#B5502B' : tone === 'light' ? '#F6F1E8' : '#1A1612';
-  const fg = tone === 'light' ? '#1A1612' : '#F6F1E8';
+/*
+ * Cut-outs of the master artwork in src/assets/brand/source — regenerate with `python scripts/brand-assets.py`.
+ * width/height are the files' pixel sizes so the space is reserved before load; size each one by its height.
+ * `dark` = sitting on a dark background: the green ink turns paper, sun and sands keep their colour.
+ */
+
+/** The logo: leaf, dunes and sun over the LocalDays wordmark. */
+export function Logo({ className, dark }: { className?: string; dark?: boolean }) {
   return (
-    <svg viewBox="0 0 64 64" className={cn('h-9 w-9', className)} aria-hidden>
-      <rect width="64" height="64" rx="18" fill={bg} />
-      <path d="M19 49V30.5C19 23.04 24.82 17 32 17s13 6.04 13 13.5V49" fill="none" stroke={fg} strokeWidth="4.2" strokeLinecap="round" />
-      <path d="M24.5 42.5a7.5 7.5 0 0 1 15 0z" fill="#F2C46D" />
-      <path d="M14 49h36" stroke={fg} strokeWidth="4.2" strokeLinecap="round" />
-    </svg>
+    <img
+      src={dark ? logoLight : logoInk}
+      width={411}
+      height={256}
+      alt={BRAND.name}
+      draggable={false}
+      className={cn('h-11 w-auto select-none md:h-[52px]', className)}
+    />
   );
 }
 
-export function Logo({ className, dark, compact }: { className?: string; dark?: boolean; compact?: boolean }) {
-  return (
-    <span className={cn('inline-flex items-center gap-2.5', className)}>
-      <LogoMark className="h-8 w-8 md:h-9 md:w-9" tone={dark ? 'light' : 'clay'} />
-      {!compact && (
-        <span className={cn('font-display text-[22px] font-medium leading-none tracking-[-0.035em]', dark ? 'text-white' : 'text-ink')} style={{ fontVariationSettings: '"SOFT" 100, "WONK" 0' }}>
-          {BRAND.name}
-        </span>
-      )}
-    </span>
-  );
+const MARKS = { ink: markInk, light: markLight, foil: markFoil };
+
+/** The emblem on its own. `foil` is a single-colour brass stamp. */
+export function LogoMark({ className, tone = 'ink' }: { className?: string; tone?: keyof typeof MARKS }) {
+  return <img src={MARKS[tone]} width={403} height={192} alt="" draggable={false} className={cn('h-9 w-auto select-none', className)} />;
+}
+
+/** The app icon (emblem on a paper tile, as in the favicon) for avatar-sized spots. */
+export function LogoIcon({ className }: { className?: string }) {
+  return <img src={icon} width={192} height={192} alt="" draggable={false} className={cn('h-9 w-9 select-none', className)} />;
 }
