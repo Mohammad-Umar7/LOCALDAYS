@@ -41,8 +41,15 @@ export interface SceneCanvasProps {
   className?: string;
   /** Force a quality tier (otherwise adaptive) */
   quality?: Quality;
+  /** Camera framing: 'auto' picks wide or tall from the canvas aspect (see framingFor) */
+  framing?: Framing | 'auto';
   children?: ReactNode;
 }
+
+export type Framing = 'wide' | 'tall';
+/** Canvases narrower than this use the pulled-back 'tall' pose. Posters are rendered for both poses. */
+export const FRAMING_SPLIT = 1.2;
+export const framingFor = (aspect: number): Framing => (aspect >= FRAMING_SPLIT ? 'wide' : 'tall');
 
 function initialQuality(): Quality {
   if (typeof window === 'undefined') return 'medium';
@@ -104,6 +111,7 @@ export function SceneCanvas({
   onReady,
   className,
   quality: forced,
+  framing = 'auto',
   children,
 }: SceneCanvasProps) {
   const wrap = useRef<HTMLDivElement>(null);
@@ -164,6 +172,7 @@ export function SceneCanvas({
             wheel={wheel}
             apiRef={apiRef}
             warm={warm}
+            framing={framing}
           />
           {warm && <Pins hotspots={hotspots} config={config} active={active} accent={accent} onSelect={onSelect} />}
           <Effects quality={quality} />
@@ -328,6 +337,7 @@ function ReadySignal({ onReady }: { onReady?: () => void }) {
 
 interface RigProps {
   warm: boolean;
+  framing: Framing | 'auto';
   config: SceneConfig;
   active: string | null;
   autoRotate: boolean;
@@ -341,9 +351,11 @@ interface RigProps {
  * Venue home poses are composed for ~16:10 landscape. On narrower (portrait) canvases pull the
  * camera back along its view ray so the sides of the venue — and their pins — stay in frame.
  */
-function framedHome(config: SceneConfig, aspect: number) {
-  const ref = 1.45;
-  const k = aspect >= ref ? 1 : Math.min(1.45, Math.pow(ref / Math.max(aspect, 0.3), 0.6));
+function framedHome(config: SceneConfig, aspect: number, framing: Framing | 'auto') {
+  // Two fixed poses (not a continuous pull-back) so a poster rendered once per pose matches the
+  // live view exactly at any size: with a fixed vertical FOV a narrower canvas is a centre crop.
+  const mode = framing === 'auto' ? framingFor(aspect) : framing;
+  const k = mode === 'wide' ? 1 : 1.45;
   const t = config.home.target;
   const p = config.home.position;
   const position: [number, number, number] = [t[0] + (p[0] - t[0]) * k, t[1] + (p[1] - t[1]) * k, t[2] + (p[2] - t[2]) * k];
@@ -351,13 +363,13 @@ function framedHome(config: SceneConfig, aspect: number) {
   return { position, target: t, dist };
 }
 
-function CameraRig({ config, active, autoRotate, intro, interactive, wheel, apiRef, warm }: RigProps) {
+function CameraRig({ config, active, autoRotate, intro, interactive, wheel, apiRef, warm, framing }: RigProps) {
   const ref = useRef<CameraControls>(null);
   const lastInteraction = useRef(performance.now());
   const started = useRef(false);
   const { camera } = useThree();
   const aspect = useThree((s) => s.size.width / Math.max(1, s.size.height));
-  const home = useMemo(() => framedHome(config, aspect), [config, aspect]);
+  const home = useMemo(() => framedHome(config, aspect, framing), [config, aspect, framing]);
   const homeRef = useRef(home);
   homeRef.current = home;
   // A pin may be chosen while shaders are still warming up — boot honours it

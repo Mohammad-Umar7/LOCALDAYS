@@ -2,23 +2,28 @@ import { useMemo, useRef, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import type { SceneId } from '@/data/types';
 import { PROVIDERS } from '@/data/catalog';
-import { SceneCanvas, type ViewerApi } from '@/three/core/SceneCanvas';
+import { SceneCanvas, type Framing, type ViewerApi } from '@/three/core/SceneCanvas';
 import type { Quality, Variant } from '@/three/core/types';
 
 /**
- * Developer harness: renders one venue full-screen for visual QA.
+ * Developer harness: renders one venue full-screen for visual QA and poster renders.
  * /dev/scene/farm?variant=golden&quality=high&provider=ghaf-grove&hotspot=garden
+ * Extra params: framing=wide|tall (fixed camera pose), ui=0 (hide this toolbar).
+ * Without `variant`, the provider's own lighting is used.
  */
 export default function DevScene() {
   const { id = 'farm' } = useParams();
   const [params, setParams] = useSearchParams();
-  const variant = (params.get('variant') as Variant) || 'golden';
   const quality = (params.get('quality') as Quality) || undefined;
   const providerId = params.get('provider');
   const provider = useMemo(
     () => PROVIDERS.find((p) => p.id === providerId) ?? PROVIDERS.find((p) => p.scene.id === id && p.flagship) ?? PROVIDERS.find((p) => p.scene.id === id),
     [providerId, id],
   );
+  const variant = (params.get('variant') as Variant) || provider?.scene.variant || 'golden';
+  const framingParam = params.get('framing');
+  const framing: Framing | 'auto' = framingParam === 'wide' || framingParam === 'tall' ? framingParam : 'auto';
+  const showUi = params.get('ui') !== '0';
   const [active, setActive] = useState<string | null>(params.get('hotspot'));
   const api = useRef<ViewerApi | null>(null);
   const [ready, setReady] = useState(false);
@@ -38,11 +43,12 @@ export default function DevScene() {
         interactive
         wheel
         quality={quality}
+        framing={framing}
         apiRef={api}
         onReady={() => setReady(true)}
         className="absolute inset-0"
       />
-      <div className="pointer-events-none absolute left-3 top-3 flex flex-wrap gap-2 text-xs">
+      <div className={showUi ? 'pointer-events-none absolute left-3 top-3 flex flex-wrap gap-2 text-xs' : 'hidden'}>
         <span className="pointer-events-auto rounded-full bg-black/60 px-3 py-1.5 font-semibold text-white">
           {id} · {variant} · {quality ?? 'adaptive'} {ready ? '· ready' : '· loading'}
         </span>
