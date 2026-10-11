@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, Box, Expand, Hand, Loader2, Minimize2, Minus, MousePointer2, Plus, RotateCcw, X } from 'lucide-react';
+import { ArrowRight, Box, ChevronLeft, ChevronRight, Expand, Hand, Loader2, Minimize2, Minus, MousePointer2, Plus, RotateCcw, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { HotspotRecord, Provider } from '@/data/types';
@@ -183,28 +183,7 @@ export function ExperienceViewer({ provider, className, active: activeProp, onSe
       )}
 
       {/* Hotspot chips */}
-      {chips && (
-        <div className="absolute inset-x-0 bottom-0 z-[45] p-3 md:p-4">
-          <div className="no-scrollbar flex gap-1.5 overflow-x-auto">
-            {hotspots.map((h, i) => (
-              <button
-                key={h.id}
-                data-hotspot-chip={h.id}
-                onClick={() => select(active === h.id ? null : h.id)}
-                className={cn(
-                  'inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-2 text-[12.5px] font-semibold backdrop-blur-md transition',
-                  active === h.id ? 'bg-white text-ink shadow-soft' : 'bg-black/40 text-white hover:bg-black/55',
-                )}
-              >
-                <span className={cn('flex h-4 w-4 items-center justify-center rounded-full text-[9px]', active === h.id ? 'text-white' : 'bg-white/90 text-ink')} style={active === h.id ? { background: cat.theme.accent } : undefined}>
-                  {i + 1}
-                </span>
-                {h.title}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+      {chips && <HotspotChips hotspots={hotspots} active={active} accent={cat.theme.accent} onSelect={select} />}
 
       {/* Info panel */}
       {panel && (
@@ -226,6 +205,79 @@ export function ExperienceViewer({ provider, className, active: activeProp, onSe
           )}
         </AnimatePresence>
       )}
+    </div>
+  );
+}
+
+function HotspotChips({ hotspots, active, accent, onSelect }: { hotspots: HotspotRecord[]; active: string | null; accent: string; onSelect: (id: string | null) => void }) {
+  const scroller = useRef<HTMLDivElement>(null);
+  const [edges, setEdges] = useState({ left: false, right: false });
+
+  useEffect(() => {
+    const el = scroller.current;
+    if (!el) return;
+    const update = () => setEdges({ left: el.scrollLeft > 2, right: el.scrollLeft + el.clientWidth < el.scrollWidth - 2 });
+    // Map vertical mouse-wheel to horizontal scroll so desktop users can reach every chip
+    const wheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX) || el.scrollWidth <= el.clientWidth) return;
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
+    };
+    update();
+    el.addEventListener('scroll', update, { passive: true });
+    el.addEventListener('wheel', wheel, { passive: false });
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener('scroll', update);
+      el.removeEventListener('wheel', wheel);
+      ro.disconnect();
+    };
+  }, [hotspots.length]);
+
+  // Keep the active chip in view (e.g. when a pin is clicked in the scene)
+  useEffect(() => {
+    const el = scroller.current;
+    const chip = active ? el?.querySelector<HTMLElement>(`[data-hotspot-chip="${active}"]`) : null;
+    if (!el || !chip) return;
+    el.scrollTo({ left: chip.offsetLeft - (el.clientWidth - chip.offsetWidth) / 2, behavior: 'smooth' });
+  }, [active]);
+
+  const page = (dir: 1 | -1) => scroller.current?.scrollBy({ left: dir * scroller.current.clientWidth * 0.7, behavior: 'smooth' });
+  const fade = `linear-gradient(to right, ${edges.left ? 'transparent, #000 40px' : '#000'}, ${edges.right ? '#000 calc(100% - 40px), transparent' : '#000'})`;
+
+  return (
+    <div className="absolute inset-x-0 bottom-0 z-[45] p-3 md:p-4">
+      <div className="relative">
+        <div ref={scroller} className="no-scrollbar relative flex gap-1.5 overflow-x-auto overscroll-x-contain" style={{ maskImage: fade, WebkitMaskImage: fade }}>
+          {hotspots.map((h, i) => (
+            <button
+              key={h.id}
+              data-hotspot-chip={h.id}
+              onClick={() => onSelect(active === h.id ? null : h.id)}
+              className={cn(
+                'inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-2 text-[12.5px] font-semibold backdrop-blur-md transition',
+                active === h.id ? 'bg-white text-ink shadow-soft' : 'bg-black/40 text-white hover:bg-black/55',
+              )}
+            >
+              <span className={cn('flex h-4 w-4 items-center justify-center rounded-full text-[9px]', active === h.id ? 'text-white' : 'bg-white/90 text-ink')} style={active === h.id ? { background: accent } : undefined}>
+                {i + 1}
+              </span>
+              {h.title}
+            </button>
+          ))}
+        </div>
+        {edges.left && (
+          <button onClick={() => page(-1)} aria-label="Scroll left" className="absolute left-0 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-ink shadow-soft transition hover:bg-white">
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+        )}
+        {edges.right && (
+          <button onClick={() => page(1)} aria-label="Scroll right" className="absolute right-0 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-ink shadow-soft transition hover:bg-white">
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        )}
+      </div>
     </div>
   );
 }
