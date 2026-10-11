@@ -31,7 +31,7 @@ Open **Demo** in the navbar (flask icon on phones). It holds a guided route, tim
 |---|---|---|
 | 1 | `/` | Five traditions, one promise. The Day Composer preview is computed live. |
 | 2 | `/c/farm` | Live availability, open dates, stays / dining / harvesting at a glance. |
-| 3 | `/p/ghaf-grove-farmstay` | Orbit the farm in 3D. Every pin opens the host’s own records — photos, capacity, prices, open dates. |
+| 3 | `/p/ghaf-grove-farmstay` | Orbit the farm in 3D. Pick a place to fly there and open the host’s own records — photos, capacity, prices, open dates. |
 | 4 | `/book/ghaf-family` | Family Farm Day, AED 450: date → guests & add-ons → review → pay (simulated). |
 | 5 | `/me` | Demo console → *Host check-in* completes the visit → **Farm Explorer** stamp. |
 | 6 | `/p/ghaf-grove-farmstay/shop` | Subscribe to the AED 120 weekly box. Demo console → **+4 weeks** fulfils deliveries. |

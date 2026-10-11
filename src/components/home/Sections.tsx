@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { VenuePoster } from '../three/VenuePoster';
 import { ArrowRight, ArrowUpRight, BadgeCheck, CalendarCheck2, Compass, HandCoins, Mic, Repeat, ShieldCheck, Sparkles, Store, Ticket } from 'lucide-react';
 import { lazy, Suspense, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -293,7 +294,7 @@ export function ImmersiveFarm() {
               Walk the farm <span className="serif-italic text-honey-300">before</span> you book it.
             </h2>
             <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-paper/65">
-              Orbit Ghaf Grove in real time. Every pin opens live details from the host’s own records — rooms, menus, harvest beds, the falaj — with prices and slots you can book.
+              Orbit Ghaf Grove in real time. Pick any place to fly there and open live details from the host’s own records — rooms, menus, harvest beds, the falaj — with prices and slots you can book.
             </p>
           </div>
           <Button to={`/p/${provider.slug}`} variant="light" size="lg" iconRight={<ArrowUpRight className="h-4 w-4" />}>
@@ -307,11 +308,13 @@ export function ImmersiveFarm() {
         >
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[30px] ring-1 ring-white/10 sm:aspect-[16/10] lg:aspect-[16/8]">
             {mount ? (
-              <Suspense fallback={<div className="absolute inset-0 bg-[#2a1d12]" />}>
+              <Suspense fallback={<div className="absolute inset-0 bg-[#1b140e]"><VenuePoster providerId={provider.id} /></div>}>
                 <ExperienceViewer provider={provider} active={active} onSelect={setActive} className="absolute inset-0" />
               </Suspense>
             ) : (
-              <SmartImage img={provider.hero} className="absolute inset-0" category="farm" />
+              <div className="absolute inset-0 bg-[#1b140e]">
+                <VenuePoster providerId={provider.id} lazy />
+              </div>
             )}
           </div>
         </motion.div>

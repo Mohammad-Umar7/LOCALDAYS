@@ -16,6 +16,7 @@ import {
   Store,
   Users,
 } from 'lucide-react';
+import { VenuePoster } from '@/components/three/VenuePoster';
 import { lazy, Suspense, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AppShell } from '@/components/layout/AppShell';
@@ -121,7 +122,8 @@ function ProviderView({ provider }: { provider: Provider }) {
             </div>
           </div>
           <div className="relative min-h-[300px] flex-1 overflow-hidden rounded-[28px]">
-            <Suspense fallback={<div className="absolute inset-0 animate-pulse rounded-[28px]" style={{ background: cat.theme.gradient }} />}>
+            {/* The venue still shows instantly, even before the 3D code has downloaded */}
+            <Suspense fallback={<div className="absolute inset-0 overflow-hidden rounded-[28px] bg-[#1b140e]"><VenuePoster providerId={provider.id} /></div>}>
               <ExperienceViewer provider={provider} active={active} onSelect={setActive} panel={false} className="absolute inset-0" />
             </Suspense>
           </div>
@@ -133,7 +135,7 @@ function ProviderView({ provider }: { provider: Provider }) {
             <div>
               <div className="eyebrow">Step inside</div>
               <h2 className="mt-1.5 font-display text-[22px] leading-tight tracking-tight">Explore {shortProviderName(provider.name)} in 3D</h2>
-              <p className="mt-1.5 text-[13px] leading-relaxed text-ink-3">Tap a pin to see what happens there — details, prices and slots come straight from the host’s records.</p>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-ink-3">Pick a place to fly there and see what happens — details, prices and slots come straight from the host’s records.</p>
               <div className="mt-5 text-[11px] font-bold uppercase tracking-[0.16em] text-ink-3">Inside this venue</div>
               <div className="mt-2 space-y-1">
                 {provider.scene.hotspots.map((h, i) => (

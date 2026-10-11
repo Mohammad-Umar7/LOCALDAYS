@@ -14,7 +14,7 @@ import { EXPERIENCE_BY_ID, PRODUCT_BY_ID } from '@/data/catalog';
 
 const GUEST_STEPS = [
   { icon: Compass, t: 'Discover', d: 'Browse five traditions or describe your day to the Day Composer. Every listing shows live availability.' },
-  { icon: Box, t: 'Step inside', d: 'Explore an illustrative 3D preview of the venue. Pins open real details — rooms, menus, workshops, prices.' },
+  { icon: Box, t: 'Step inside', d: 'Explore an illustrative 3D preview of the venue. Pick a place to fly there and see real details — rooms, menus, workshops, prices.' },
   { icon: CalendarCheck2, t: 'Book', d: 'Pick a date and time; spots are held for 10 minutes while you check out as a guest or with an account.' },
   { icon: KeyRound, t: 'Live it', d: 'Show your 4-digit code on arrival. The host verifies your visit and your Passport stamp appears.' },
   { icon: ShoppingBag, t: 'Take it home', d: 'The host’s shop remembers what you tried — reorder honey by batch, subscribe to the farm, refill your blend.' },

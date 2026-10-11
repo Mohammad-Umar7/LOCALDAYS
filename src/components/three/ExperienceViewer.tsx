@@ -11,6 +11,7 @@ import { aed, fmtDate } from '@/lib/format';
 import { useAvailabilityCtx } from '@/store/app';
 import { upcomingOpenDates } from '@/services/availability';
 import { SmartImage } from '@/components/ui/SmartImage';
+import { VenuePoster } from './VenuePoster';
 import { cn } from '@/lib/utils';
 
 function useIsTouch() {
@@ -56,12 +57,22 @@ export function ExperienceViewer({ provider, className, active: activeProp, onSe
   const hotspots = provider.scene.hotspots;
   const record = hotspots.find((h) => h.id === active) ?? null;
   const lines = LOADING_LINES[provider.scene.id] ?? ['Loading…'];
+  // A still of the venue covers the canvas until the live scene is ready (no loading screen)
+  const [posterFailed, setPosterFailed] = useState(false);
+  const [posterGone, setPosterGone] = useState(false);
+  const hasPoster = !posterFailed;
 
   useEffect(() => {
-    if (ready) return;
+    if (ready || hasPoster) return;
     const t = setInterval(() => setLine((v) => (v + 1) % lines.length), 1400);
     return () => clearInterval(t);
-  }, [ready, lines.length]);
+  }, [ready, hasPoster, lines.length]);
+
+  useEffect(() => {
+    if (!ready) return;
+    const t = window.setTimeout(() => setPosterGone(true), 900);
+    return () => window.clearTimeout(t);
+  }, [ready]);
 
   useEffect(() => {
     if (!expanded) return;
@@ -82,7 +93,7 @@ export function ExperienceViewer({ provider, className, active: activeProp, onSe
       data-viewer
       className={cn(
         'relative overflow-hidden',
-        // `isolate` keeps the overlay layers (z-45 chips, pins) inside the viewer so fixed page bars stay on top
+        // `isolate` keeps the overlay layers (z-45 chips and controls) inside the viewer so fixed page bars stay on top
         expanded ? 'fixed inset-0 z-[75] rounded-none' : 'isolate rounded-[28px]',
         dark ? 'bg-[#1b140e]' : 'bg-sand-200',
         !expanded && className,
@@ -92,21 +103,27 @@ export function ExperienceViewer({ provider, className, active: activeProp, onSe
         sceneId={provider.scene.id}
         variant={variant ?? provider.scene.variant}
         features={provider.scene.features}
-        hotspots={hotspots.map((h) => ({ id: h.id, title: h.title, kicker: h.kicker }))}
+        // No pins in the scene: places are picked from the list and the chip row
+        hotspots={[]}
         active={active}
         onSelect={select}
         accent={cat.theme.accent}
         interactive={interactive}
         wheel={expanded}
-        intro={intro}
+        // The poster shows the opening pose, so the camera must start there (no dolly-in)
+        intro={intro && !hasPoster}
         apiRef={api}
         onReady={() => setReady(true)}
         className="absolute inset-0"
       />
 
-      {/* Loading veil */}
+      {hasPoster && !posterGone && (
+        <VenuePoster providerId={provider.id} hidden={ready} className="z-[5]" onError={() => setPosterFailed(true)} />
+      )}
+
+      {/* Fallback veil, only if a venue has no poster */}
       <AnimatePresence>
-        {!ready && (
+        {!ready && !hasPoster && (
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -142,7 +159,7 @@ export function ExperienceViewer({ provider, className, active: activeProp, onSe
           </span>
           {ready && !touch && !active && (
             <span className="hidden items-center gap-1.5 rounded-full bg-black/30 px-3 py-1.5 text-[11.5px] font-medium text-white/80 backdrop-blur-md md:inline-flex">
-              <MousePointer2 className="h-3.5 w-3.5" /> Drag to orbit · click a pin
+              <MousePointer2 className="h-3.5 w-3.5" /> Drag to orbit · pick a place below
             </span>
           )}
         </div>
@@ -236,7 +253,7 @@ function HotspotChips({ hotspots, active, accent, onSelect }: { hotspots: Hotspo
     };
   }, [hotspots.length]);
 
-  // Keep the active chip in view (e.g. when a pin is clicked in the scene)
+  // Keep the active chip in view (e.g. when a place is picked from the list beside the viewer)
   useEffect(() => {
     const el = scroller.current;
     const chip = active ? el?.querySelector<HTMLElement>(`[data-hotspot-chip="${active}"]`) : null;
