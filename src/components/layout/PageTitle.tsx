@@ -16,6 +16,7 @@ const STATIC: [string, string][] = [
   ['/impact', 'Business model & impact'],
   ['/how-it-works', `How ${BRAND.name} works`],
   ['/hosts', `Host on ${BRAND.name}`],
+  ['/dev/scene/:id', '3D venue preview'],
 ];
 
 function titleFor(pathname: string): string {
