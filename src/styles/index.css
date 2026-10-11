@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --paper: #f6f1e8;
+    --ink: #1a1612;
+    --nav-h: 72px;
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(181, 80, 43, 0.22);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: theme('fontFamily.display');
+    font-optical-sizing: auto;
+  }
+
+  :focus-visible {
+    outline: 2px solid #b5502b;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  img {
+    -webkit-user-drag: none;
+  }
+
+  /* Grid items may never blow out their track (scroll rows, charts, long words) */
+  .grid > * {
+    min-width: 0;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-10;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-3;
+  }
+
+  .display-xl {
+    font-family: theme('fontFamily.display');
+    font-size: clamp(3rem, 8.2vw, 7.6rem);
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    font-weight: 380;
+    font-variation-settings: 'SOFT' 50, 'WONK' 0;
+  }
+
+  .display-lg {
+    font-family: theme('fontFamily.display');
+    font-size: clamp(2.4rem, 5.2vw, 4.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    font-weight: 400;
+    font-variation-settings: 'SOFT' 50;
+  }
+
+  .display-md {
+    font-family: theme('fontFamily.display');
+    font-size: clamp(1.9rem, 3.4vw, 3rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 420;
+    font-variation-settings: 'SOFT' 40;
+  }
+
+  .display-sm {
+    font-family: theme('fontFamily.display');
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 450;
+  }
+
+  .serif-italic {
+    font-style: italic;
+    font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  }
+
+  .card {
+    @apply rounded-3xl border border-line/70 bg-white/70 shadow-soft backdrop-blur-sm;
+  }
+
+  .card-solid {
+    @apply rounded-3xl border border-line/80 bg-white shadow-soft;
+  }
+
+  .hairline {
+    @apply border-line/80;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-white/80 px-3 py-1.5 text-[13px] font-medium text-ink-2 transition-colors;
+  }
+
+  .chip-active {
+    @apply border-ink bg-ink text-paper;
+  }
+
+  .input {
+    @apply w-full rounded-2xl border border-line bg-white px-4 py-3 text-[15px] text-ink placeholder:text-ink-4 transition focus:border-ink/40 focus:outline-none focus:ring-4 focus:ring-clay-500/10;
+  }
+
+  .label {
+    @apply mb-1.5 block text-[12px] font-semibold uppercase tracking-[0.12em] text-ink-3;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .thin-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(26, 22, 18, 0.18) transparent;
+  }
+
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.08  0 0 0 0 0.06  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #efe6d6 0%, #f8f2e8 50%, #efe6d6 100%);
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+
+  .mask-fade-r {
+    mask-image: linear-gradient(to right, black 85%, transparent);
+  }
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 70%, transparent);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pattern-girih {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><g fill='none' stroke='%23B5502B' stroke-opacity='0.16' stroke-width='1'><path d='M28 4 L36 20 L52 28 L36 36 L28 52 L20 36 L4 28 L20 20 Z'/><circle cx='28' cy='28' r='6'/><path d='M0 0 L8 8 M56 0 L48 8 M0 56 L8 48 M56 56 L48 48'/></g></svg>");
+  }
+
+  .pattern-girih-light {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><g fill='none' stroke='%23F6F1E8' stroke-opacity='0.09' stroke-width='1'><path d='M28 4 L36 20 L52 28 L36 36 L28 52 L20 36 L4 28 L20 20 Z'/><circle cx='28' cy='28' r='6'/><path d='M0 0 L8 8 M56 0 L48 8 M0 56 L8 48 M56 56 L48 48'/></g></svg>");
+  }
+}
+
+/* Drei <Html> hotspot wrappers should never catch layout */
+.hotspot-html {
+  pointer-events: none;
+}
+.hotspot-html > * {
+  pointer-events: auto;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+}
+
+@keyframes hotspotIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Blend Studio sliders — track fills with the note colour up to the value */
+.blend-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--c) 0 var(--p), rgba(255, 255, 255, 0.12) var(--p) 100%);
+  outline: none;
+  cursor: pointer;
+}
+.blend-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--c), 0 2px 8px rgba(0, 0, 0, 0.45);
+  cursor: grab;
+}
+.blend-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--c), 0 2px 8px rgba(0, 0, 0, 0.45);
+  cursor: grab;
+}
+.blend-range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px var(--c), 0 0 0 7px rgba(255, 255, 255, 0.3);
+}
