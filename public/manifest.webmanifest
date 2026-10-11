@@ -1,0 +1,16 @@
+{
+  "name": "LocalDays — Don’t Just Visit. Live It.",
+  "short_name": "LocalDays",
+  "description": "Discover and book living traditions across Sharjah, then keep buying from the hosts you meet. Demo build with fictional hosts.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F6F1E8",
+  "theme_color": "#F6F1E8",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
