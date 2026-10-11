@@ -1,0 +1,136 @@
+import type { Category, CategoryId } from './types';
+
+export const CATEGORIES: Category[] = [
+  {
+    id: 'farm',
+    name: 'Farmhouse & Farm-to-Table',
+    shortName: 'Farm',
+    arabic: 'المزرعة',
+    arabicLatin: 'al-mazraʿa',
+    tagline: 'Harvest at sunrise. Dine under the palms.',
+    description:
+      'Stay in restored farmhouses, harvest with the families who grow your food, and share long-table dinners cooked from the garden.',
+    sceneId: 'farm',
+    theme: {
+      accent: '#5F7F3C',
+      accentSoft: '#E7EDD9',
+      deep: '#1E2E16',
+      ink: '#F4F0E3',
+      gradient: 'linear-gradient(160deg, #3F5A26 0%, #1E2E16 100%)',
+    },
+    image: { key: 'farm_dates', i: 0, alt: 'Date palms in a farm grove at golden hour' },
+    heroImage: { key: 'farm_dates', i: 5, alt: 'Rows of date palms beneath desert mountains' },
+    stamp: { title: 'Farm Explorer', motto: 'From the soil to the table' },
+    commerce: {
+      model: 'subscription',
+      headline: 'Visit once. Eat from the farm every week.',
+      summary: 'Guests subscribe to seasonal produce boxes, dates and pantry goods from the farm they visited.',
+    },
+  },
+  {
+    id: 'honey',
+    name: 'Beekeeping & Honey',
+    shortName: 'Honey',
+    arabic: 'العسل',
+    arabicLatin: 'al-ʿasal',
+    tagline: 'Meet the colony. Taste the wadi.',
+    description:
+      'Join beekeepers in mountain wadis, learn how a colony works from a safe observation area, and taste Sidr and Samar honey at its source.',
+    sceneId: 'apiary',
+    theme: {
+      accent: '#D18F22',
+      accentSoft: '#FBEBCB',
+      deep: '#3A2408',
+      ink: '#FFF6E5',
+      gradient: 'linear-gradient(160deg, #C9861D 0%, #4A2E0B 100%)',
+    },
+    image: { key: 'honey_bees', i: 0, alt: 'Beehive frames covered with bees' },
+    heroImage: { key: 'honey_product', i: 0, alt: 'Honey dripping from honeycomb' },
+    stamp: { title: 'Honey Discoverer', motto: 'Every jar has a wadi' },
+    commerce: {
+      model: 'reorder',
+      headline: 'Reorder the honey you tasted.',
+      summary: 'Batch-tracked jars, seasonal varieties and a monthly honey club, fulfilled only from real harvests.',
+    },
+  },
+  {
+    id: 'pottery',
+    name: 'Pottery & Handmade Crafts',
+    shortName: 'Pottery',
+    arabic: 'الفخار',
+    arabicLatin: 'al-fakhkhār',
+    tagline: 'Shape it yourself. Take the craft home.',
+    description:
+      'Throw your first bowl, learn traditional vessel forms, and commission handmade pieces from the artisans who taught you.',
+    sceneId: 'pottery',
+    theme: {
+      accent: '#B35A36',
+      accentSoft: '#F5DFD3',
+      deep: '#3A1A0E',
+      ink: '#FBF0E8',
+      gradient: 'linear-gradient(160deg, #B35A36 0%, #3A1A0E 100%)',
+    },
+    image: { key: 'pottery_wheel', i: 0, alt: 'Hands shaping clay on a pottery wheel' },
+    heroImage: { key: 'pottery_ceramics', i: 0, alt: 'Handmade ceramics on a shelf' },
+    stamp: { title: 'Pottery Maker', motto: 'Made by hand, fired with care' },
+    commerce: {
+      model: 'commission',
+      headline: 'From workshop to commission.',
+      summary: 'Ready-made ceramics, matching pieces and personalised commissions tracked through the kiln.',
+    },
+  },
+  {
+    id: 'coastal',
+    name: 'Traditional Fishing & Coastal Life',
+    shortName: 'Coastal',
+    arabic: 'البحر',
+    arabicLatin: 'al-baḥr',
+    tagline: 'Mend the nets. Read the tide.',
+    description:
+      "Learn Sharjah's maritime heritage from fishing families — net-making, traditional traps and, with licensed operators, mornings at sea.",
+    sceneId: 'harbour',
+    theme: {
+      accent: '#1E6E7C',
+      accentSoft: '#D6EBEE',
+      deep: '#082027',
+      ink: '#EAF6F7',
+      gradient: 'linear-gradient(160deg, #1E6E7C 0%, #082027 100%)',
+    },
+    image: { key: 'coastal_dhow', i: 0, alt: 'Traditional wooden dhow boats moored in a harbour' },
+    heroImage: { key: 'coastal_sea', i: 0, alt: 'Mountains meeting the sea on the east coast' },
+    stamp: { title: 'Coastal Explorer', motto: 'Rooted in the tide' },
+    commerce: {
+      model: 'experiences',
+      headline: 'Come back with the whole crew.',
+      summary: 'Season passes, group excursions and seafood heritage dinners — recurring experiences, not forced subscriptions.',
+    },
+  },
+  {
+    id: 'fragrance',
+    name: 'Oud, Bukhoor & Fragrance Making',
+    shortName: 'Fragrance',
+    arabic: 'العود',
+    arabicLatin: 'al-ʿūd',
+    tagline: 'Blend your scent. Reorder it for life.',
+    description:
+      'Learn the language of oud, mix bukhoor by hand and create a signature blend that the maker keeps on file for you.',
+    sceneId: 'atelier',
+    theme: {
+      accent: '#7A3346',
+      accentSoft: '#F1DEE3',
+      deep: '#220D15',
+      ink: '#FBEFF2',
+      gradient: 'linear-gradient(160deg, #7A3346 0%, #220D15 100%)',
+    },
+    image: { key: 'fragrance_oud', i: 0, alt: 'Incense smoke rising from a traditional burner' },
+    heroImage: { key: 'fragrance_bottles', i: 0, alt: 'Perfume bottles on a dark surface' },
+    stamp: { title: 'Fragrance Creator', motto: 'A scent remembered' },
+    commerce: {
+      model: 'formula',
+      headline: 'Your Signature Blend, on file.',
+      summary: 'With the maker’s approval, your workshop formula is saved so you can reorder refills and gifts anytime.',
+    },
+  },
+];
+
+export const CATEGORY_BY_ID = Object.fromEntries(CATEGORIES.map((c) => [c.id, c])) as Record<CategoryId, Category>;
