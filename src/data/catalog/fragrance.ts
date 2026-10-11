@@ -170,7 +170,7 @@ export const fragranceExperiences = [
     kind: 'workshop',
     summary: 'Create a signature perfume oil, guided by a maker — then reorder it for life.',
     description:
-      'Smell your way through the atelier’s organ of notes, choose a base formula and tune it within the maker’s approved ranges. Leave with 30 ml of your Signature Blend, saved to your LocalDays profile for refills and gifts.',
+      'Smell your way through the atelier’s organ of notes, choose a base formula and tune it within the maker’s approved ranges. Leave with 30 ml of your Signature Blend, saved to your Fadhal profile for refills and gifts.',
     durationMins: 150,
     price: 380,
     priceUnit: 'per_guest',

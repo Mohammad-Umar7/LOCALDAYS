@@ -2,7 +2,7 @@ import type { Challenge, Reward } from './types';
 
 /**
  * Rewards are funded explicitly — by a named host (capped) or from a
- * capped LocalDays marketing budget — so small hosts never carry
+ * capped Fadhal marketing budget — so small hosts never carry
  * unplanned costs. Caps and usage are shown to customers.
  */
 export const REWARDS: Reward[] = [
@@ -69,13 +69,13 @@ export const REWARDS: Reward[] = [
   {
     id: 'rw-three-traditions',
     title: 'AED 50 towards your fourth tradition',
-    description: 'Complete experiences in three different categories and LocalDays covers AED 50 of your fourth.',
+    description: 'Complete experiences in three different categories and Fadhal covers AED 50 of your fourth.',
     value: { type: 'fixed', amount: 50 },
-    fundedBy: { type: 'platform', name: 'LocalDays marketing budget' },
+    fundedBy: { type: 'platform', name: 'Fadhal marketing budget' },
     budget: { cap: 6000, used: 2150, unit: 'AED' },
     unlock: { type: 'challenge', challengeId: 'ch-three-traditions' },
     appliesTo: { scope: 'experiences' },
-    rules: ['Funded by LocalDays, not hosts — hosts receive their full price', 'Quarterly budget cap of AED 6,000', 'Minimum booking AED 120'],
+    rules: ['Funded by Fadhal, not hosts — hosts receive their full price', 'Quarterly budget cap of AED 6,000', 'Minimum booking AED 120'],
     validDays: 90,
   },
   {
@@ -83,11 +83,11 @@ export const REWARDS: Reward[] = [
     title: 'Seat at a seasonal family workshop',
     description: 'Complete a family cultural experience to unlock a seat at a limited seasonal workshop (e.g. Date Harvest Festival).',
     value: { type: 'access' },
-    fundedBy: { type: 'platform', name: 'LocalDays community fund' },
+    fundedBy: { type: 'platform', name: 'Fadhal community fund' },
     budget: { cap: 80, used: 33, unit: 'redemptions' },
     unlock: { type: 'challenge', challengeId: 'ch-family' },
     appliesTo: { scope: 'event' },
-    rules: ['Seats purchased from hosts at full price by LocalDays', 'Capped at 80 seats per season'],
+    rules: ['Seats purchased from hosts at full price by Fadhal', 'Capped at 80 seats per season'],
     validDays: 120,
   },
   {
@@ -95,7 +95,7 @@ export const REWARDS: Reward[] = [
     title: 'Priority booking for limited events',
     description: 'Visit hosts in two different regions to unlock 72-hour early access to limited events.',
     value: { type: 'priority' },
-    fundedBy: { type: 'platform', name: 'LocalDays' },
+    fundedBy: { type: 'platform', name: 'Fadhal' },
     budget: { cap: 500, used: 120, unit: 'redemptions' },
     unlock: { type: 'challenge', challengeId: 'ch-second-community' },
     appliesTo: { scope: 'event' },
@@ -107,11 +107,11 @@ export const REWARDS: Reward[] = [
     title: 'Free balcony seedling kit',
     description: 'Join an approved sustainability workshop and take home a herb seedling kit.',
     value: { type: 'fixed', amount: 45 },
-    fundedBy: { type: 'platform', name: 'LocalDays sustainability fund' },
+    fundedBy: { type: 'platform', name: 'Fadhal sustainability fund' },
     budget: { cap: 3000, used: 900, unit: 'AED' },
     unlock: { type: 'challenge', challengeId: 'ch-sustainability' },
     appliesTo: { providerId: 'ghaf-grove', scope: 'products' },
-    rules: ['LocalDays buys kits from the host at full price', 'Budget cap AED 3,000 per season'],
+    rules: ['Fadhal buys kits from the host at full price', 'Budget cap AED 3,000 per season'],
     validDays: 60,
   },
 ];

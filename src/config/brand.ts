@@ -3,8 +3,8 @@
  * Rename the product here and it updates everywhere in the UI.
  */
 export const BRAND = {
-  name: 'LocalDays',
-  nameArabic: 'أيام محلية',
+  name: 'Fadhal',
+  nameArabic: 'فضل',
   tagline: "Don’t Just Visit. Live It.",
   taglineLead: "Don’t Just Visit.",
   taglineEmphasis: 'Live It.',
@@ -14,10 +14,10 @@ export const BRAND = {
   country: 'United Arab Emirates',
   currency: 'AED',
   locale: 'en-AE',
-  supportEmail: 'hello@localdays.demo',
-  passportName: 'LocalDays Passport',
-  proPlanName: 'LocalDays Pro',
-  intelligenceName: 'LocalDays Intelligence',
+  supportEmail: 'hello@fadhal.demo',
+  passportName: 'Fadhal Passport',
+  proPlanName: 'Fadhal Pro',
+  intelligenceName: 'Fadhal Intelligence',
   composerName: 'Day Composer',
   /** Shown wherever data is fictional so nothing is mistaken for a real partnership. */
   demoNotice:

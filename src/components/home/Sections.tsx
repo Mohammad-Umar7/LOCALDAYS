@@ -78,7 +78,7 @@ export function ComposerTeaser() {
       <div className="shell relative grid items-center gap-14 lg:grid-cols-[1.05fr_1fr]">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[12px] font-semibold text-honey-300">
-            <Sparkles className="h-3.5 w-3.5" /> LocalDays Intelligence · Day Composer
+            <Sparkles className="h-3.5 w-3.5" /> Fadhal Intelligence · Day Composer
           </div>
           <h2 className="display-lg mt-6 text-balance">
             Describe your day.
@@ -230,7 +230,7 @@ export function HowItWorks() {
   const steps = [
     { icon: Compass, title: 'Discover', body: 'Five traditions, real hosts, live availability. Step inside each venue in 3D before you book.' },
     { icon: CalendarCheck2, title: 'Book & live it', body: 'Hold your spots, pay securely and spend the day with the people who keep the tradition alive.' },
-    { icon: BadgeCheck, title: 'Collect your stamp', body: 'Your host verifies the visit and a stamp lands in your LocalDays Passport.' },
+    { icon: BadgeCheck, title: 'Collect your stamp', body: 'Your host verifies the visit and a stamp lands in your Fadhal Passport.' },
     { icon: Repeat, title: 'Take it home', body: 'Reorder the honey you tasted, subscribe to the farm’s produce, refill your signature blend.' },
   ];
   return (
@@ -238,13 +238,13 @@ export function HowItWorks() {
       <div className="shell">
         <SectionHeader
           align="center"
-          eyebrow="How LocalDays works"
+          eyebrow="How Fadhal works"
           title={
             <>
               The visit is <span className="serif-italic text-clay-500">the beginning</span>.
             </>
           }
-          description="Tourism platforms stop at the ticket. LocalDays turns a great day into a lasting relationship with a local business."
+          description="Tourism platforms stop at the ticket. Fadhal turns a great day into a lasting relationship with a local business."
         />
         <div className="mt-14 grid gap-4 md:grid-cols-4">
           {steps.map((s, i) => (
@@ -358,7 +358,7 @@ export function ThisWeekend() {
         <SectionHeader
           eyebrow={`This weekend · ${fmtDate(wk.start, 'EEE d')} – ${fmtDate(wk.end, 'EEE d MMM')}`}
           title="Spots still open this weekend."
-          description="Live availability from LocalDays hosts. Seats are held for 10 minutes while you check out."
+          description="Live availability from Fadhal hosts. Seats are held for 10 minutes while you check out."
           action={
             <Button to="/experiences?when=weekend" variant="outline" iconRight={<ArrowRight className="h-4 w-4" />}>
               Plan the weekend
@@ -431,13 +431,13 @@ export function PassportPreview() {
       <div className="shell grid items-center gap-14 lg:grid-cols-2">
         <div>
           <SectionHeader
-            eyebrow="LocalDays Passport"
+            eyebrow="Fadhal Passport"
             title={
               <>
                 Stamps you <span className="serif-italic text-clay-500">earn</span>, not points you click.
               </>
             }
-            description="Each stamp is verified by your host when you complete a real experience. Explore different traditions to unlock rewards that hosts and LocalDays fund transparently."
+            description="Each stamp is verified by your host when you complete a real experience. Explore different traditions to unlock rewards that hosts and Fadhal fund transparently."
           />
           <div className="mt-8 space-y-3">
             {CHALLENGES.slice(0, 3).map((c) => {
@@ -506,7 +506,7 @@ export function SupportLocal() {
       <div className="shell">
         <SectionHeader
           dark
-          eyebrow="How LocalDays supports local businesses"
+          eyebrow="How Fadhal supports local businesses"
           title={
             <>
               A booking is good. <span className="serif-italic text-honey-300">A regular customer</span> is a livelihood.
@@ -525,7 +525,7 @@ export function SupportLocal() {
             </div>
             <div className="mt-4 grid gap-3 sm:grid-cols-3">
               <Split color="bg-honey-300" label="Farm keeps" value={aed(host)} />
-              <Split color="bg-clay-400" label={`LocalDays (${ECONOMICS.experienceCommission * 100}%)`} value={aed(commission)} />
+              <Split color="bg-clay-400" label={`Fadhal (${ECONOMICS.experienceCommission * 100}%)`} value={aed(commission)} />
               <Split color="bg-white/30" label="Payment processing" value={aed(processing)} />
             </div>
             <div className="mt-8 rounded-2xl bg-white/[0.06] p-5">

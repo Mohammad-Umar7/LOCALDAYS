@@ -7,8 +7,8 @@ import { EXPERIENCE_BY_ID, PROVIDER_BY_SLUG } from '@/data/catalog';
 const STATIC: [string, string][] = [
   ['/experiences', 'All experiences'],
   ['/checkout', 'Checkout'],
-  ['/me/*', 'My LocalDays'],
-  ['/me', 'My LocalDays'],
+  ['/me/*', 'My Fadhal'],
+  ['/me', 'My Fadhal'],
   ['/passport', `${BRAND.name} Passport`],
   ['/compose', 'Day Composer'],
   ['/host/*', 'Host dashboard'],

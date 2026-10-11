@@ -116,7 +116,7 @@ export default function Checkout() {
                 <div>
                   <div className="text-[15px] font-semibold">{user.name}</div>
                   <div className="text-[13px] text-ink-3">
-                    {user.email} · stamps and receipts go to My LocalDays
+                    {user.email} · stamps and receipts go to My Fadhal
                   </div>
                 </div>
               </div>
@@ -169,7 +169,7 @@ export default function Checkout() {
               })}
             </div>
             <div className="mt-4 flex items-center gap-2 text-[12.5px] text-ink-3">
-              <Lock className="h-3.5 w-3.5" /> In production, payments are processed by a licensed UAE payment provider; LocalDays never stores card numbers.
+              <Lock className="h-3.5 w-3.5" /> In production, payments are processed by a licensed UAE payment provider; Fadhal never stores card numbers.
             </div>
           </section>
 
@@ -179,7 +179,7 @@ export default function Checkout() {
               <div className="text-[14px] text-honey-700">
                 <div className="font-semibold">Subscription terms</div>
                 Your first delivery is charged today. After that you’re charged each{' '}
-                {totals.recurring.map((r) => r.recurring).join(' / ')} cycle before packing. Skip, pause or cancel anytime from My LocalDays — the host is told immediately.
+                {totals.recurring.map((r) => r.recurring).join(' / ')} cycle before packing. Skip, pause or cancel anytime from My Fadhal — the host is told immediately.
               </div>
             </section>
           )}

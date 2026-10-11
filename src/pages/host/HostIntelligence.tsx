@@ -130,7 +130,7 @@ function HarvestIntelligence() {
             <ul className="mt-2 space-y-1.5">
               <li>· Demand = boxes due this week × box contents + booked covers × the farmer’s recipe quantities + stays × breakfast basket.</li>
               <li>· Forecast = the farmer’s own harvest estimate; the range is the min–max of the last six comparable weeks. No prediction-accuracy claims are made.</li>
-              <li>· Recommendations can only use swaps the farmer approved in advance and suppliers verified on LocalDays.</li>
+              <li>· Recommendations can only use swaps the farmer approved in advance and suppliers verified on Fadhal.</li>
               <li>· The explanation is generated from these figures only. In production an LLM may phrase it — it cannot change the numbers.</li>
             </ul>
           </details>

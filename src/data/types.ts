@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------ */
-/*  LocalDays domain model                                             */
+/*  Fadhal domain model                                             */
 /*  Everything the UI renders is derived from these records so real    */
 /*  verified operators can replace the fictional demo data later.      */
 /* ------------------------------------------------------------------ */

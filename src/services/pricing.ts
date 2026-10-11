@@ -67,7 +67,7 @@ export function priceExperience(
     if (reward.value.type === 'fixed') r = Math.min(subtotal - discount, reward.value.amount ?? 0);
     if (r > 0) {
       discount += r;
-      lines.push({ label: `Passport reward · ${reward.fundedBy.type === 'platform' ? 'funded by LocalDays' : 'host-funded'}`, amount: -r });
+      lines.push({ label: `Passport reward · ${reward.fundedBy.type === 'platform' ? 'funded by Fadhal' : 'host-funded'}`, amount: -r });
     }
   }
 

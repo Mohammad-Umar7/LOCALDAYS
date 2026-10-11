@@ -69,7 +69,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
       >
         <div className="shell flex h-[64px] items-center justify-between gap-4 md:h-[72px]">
           <div className="flex min-w-0 items-center gap-4 xl:gap-8">
-            <Link to="/" aria-label="LocalDays home" className="shrink-0">
+            <Link to="/" aria-label="Fadhal home" className="shrink-0">
               <Logo dark={light} />
             </Link>
             <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1">
@@ -152,7 +152,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
                       transition={{ duration: 0.18 }}
                       className="absolute right-0 top-12 w-60 overflow-hidden rounded-2xl border border-line bg-white p-1.5 shadow-lift"
                     >
-                      <MenuLink to="/me" icon={<Ticket className="h-4 w-4" />} label="My LocalDays" />
+                      <MenuLink to="/me" icon={<Ticket className="h-4 w-4" />} label="My Fadhal" />
                       <MenuLink to="/passport" icon={<BookOpen className="h-4 w-4" />} label="Passport" />
                       <MenuLink to="/host" icon={<LayoutDashboard className="h-4 w-4" />} label="Host dashboard (demo)" />
                       <div className="my-1 h-px bg-line" />
@@ -265,7 +265,7 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
             { to: '/experiences', label: 'All experiences' },
             { to: '/compose', label: 'Day Composer' },
             { to: '/passport', label: 'Passport' },
-            { to: '/me', label: 'My LocalDays' },
+            { to: '/me', label: 'My Fadhal' },
             { to: '/hosts', label: 'For hosts' },
             { to: '/host', label: 'Host dashboard' },
             { to: '/impact', label: 'Impact' },

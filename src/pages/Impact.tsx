@@ -75,7 +75,7 @@ function Lifecycle() {
             A cultural experience shouldn’t end <span className="serif-italic text-honey-300">when the visitor leaves.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-[16.5px] text-paper/65">
-            Our hypothesis: local experiences are the best customer-acquisition channel a small business can have. LocalDays turns one booking into a relationship — and we measure whether
+            Our hypothesis: local experiences are the best customer-acquisition channel a small business can have. Fadhal turns one booking into a relationship — and we measure whether
             it works rather than assume it does.
           </p>
         </div>
@@ -120,7 +120,7 @@ function Streams() {
       k: 'A',
       t: 'Experience commissions',
       d: `${ECONOMICS.experienceCommission * 100}% of every booking`,
-      ex: [`AED 200 booking`, `× ${ECONOMICS.experienceCommission * 100}%`, `= AED ${200 * ECONOMICS.experienceCommission} to LocalDays`],
+      ex: [`AED 200 booking`, `× ${ECONOMICS.experienceCommission * 100}%`, `= AED ${200 * ECONOMICS.experienceCommission} to Fadhal`],
     },
     {
       icon: Repeat,
@@ -133,7 +133,7 @@ function Streams() {
       icon: Building2,
       k: 'C',
       t: 'Business software',
-      d: 'Optional LocalDays Pro',
+      d: 'Optional Fadhal Pro',
       ex: [`AED ${ECONOMICS.proPlanMonthly} / month`, 'bookings · stock · CRM · intelligence', `= AED ${(ECONOMICS.proPlanMonthly * 12).toLocaleString('en-US')} / host / year`],
     },
     {
@@ -147,7 +147,7 @@ function Streams() {
   return (
     <section className="py-16 md:py-24">
       <div className="shell">
-        <SectionHeader eyebrow="How LocalDays earns" title="Four revenue streams. One of them repeats every week." description="All rates are illustrative and adjustable in a single configuration file." />
+        <SectionHeader eyebrow="How Fadhal earns" title="Four revenue streams. One of them repeats every week." description="All rates are illustrative and adjustable in a single configuration file." />
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {cards.map((c, i) => (
             <Reveal key={c.k} delay={i * 0.06}>
@@ -227,12 +227,12 @@ function Pilot() {
         <div className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
           {[
             { k: 'Gross bookings & sales (GMV)', v: aed(gmv), s: '12 weeks' },
-            { k: 'LocalDays net revenue', v: aed(platform), s: `${((platform / gmv) * 100).toFixed(1)}% blended take rate` },
+            { k: 'Fadhal net revenue', v: aed(platform), s: `${((platform / gmv) * 100).toFixed(1)}% blended take rate` },
             { k: 'Kept by local businesses', v: pct(1 - platform / gmv - ECONOMICS.paymentProcessing), s: 'after commission & processing' },
             { k: 'Spend outside Sharjah City', v: pct(outside), s: 'tourism dispersed to 8 regions' },
             { k: 'Products’ share of host sales', v: `${pct(firstShare)} → ${pct(lastShare)}`, s: 'first 4 weeks vs last 4' },
             { k: 'Active subscriptions', v: subscribersNow, s: 'produce boxes, honey & date clubs' },
-            { k: 'Hosts on LocalDays Pro', v: `${Math.round(PROVIDERS.length * 0.6)} of ${PROVIDERS.length}`, s: 'assumed 60% adoption' },
+            { k: 'Hosts on Fadhal Pro', v: `${Math.round(PROVIDERS.length * 0.6)} of ${PROVIDERS.length}`, s: 'assumed 60% adoption' },
             { k: 'Heritage sessions delivered', v: compactNum(Math.round(all.reduce((s, x) => s + x.weeks.reduce((a, w) => a + w.guests, 0), 0) / 6)), s: 'workshops, tours & demos' },
           ].map((x) => (
             <div key={x.k} className="rounded-[22px] bg-white p-5 shadow-ring">
@@ -246,7 +246,7 @@ function Pilot() {
           <div className="flex flex-col rounded-[26px] bg-white p-5 shadow-ring md:p-6">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <div className="text-[16px] font-semibold">LocalDays revenue by stream</div>
+                <div className="text-[16px] font-semibold">Fadhal revenue by stream</div>
                 <div className="text-[12.5px] text-ink-3">Weekly, all hosts</div>
               </div>
               <button onClick={() => setTable((v) => !v)} className="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-[12px] font-semibold text-ink-2">
@@ -370,7 +370,7 @@ function Simulator() {
             <div className="grid grid-cols-2 gap-3">
               {[
                 { k: 'Monthly GMV', v: aed(m.expGmv + m.prodGmv) },
-                { k: 'LocalDays revenue / month', v: aed(m.platform) },
+                { k: 'Fadhal revenue / month', v: aed(m.platform) },
                 { k: 'Local business income / month', v: aed(m.hostIncome) },
                 { k: 'Active subscriptions (month 12)', v: Math.round(m.steady).toLocaleString() },
               ].map((x) => (
@@ -386,7 +386,7 @@ function Simulator() {
                 <BarList
                   items={[
                     { label: 'Experience only (typical platform)', value: m.withoutCommerce, color: '#B3A897' },
-                    { label: 'Experience + LocalDays commerce', value: m.perVisitor12, color: SERIES[0] },
+                    { label: 'Experience + Fadhal commerce', value: m.perVisitor12, color: SERIES[0] },
                   ]}
                   format={(n) => aed(n)}
                 />
@@ -573,7 +573,7 @@ function StreamTotals({ weeks }: { weeks: { platform: { exp: number; prod: numbe
       </div>
       <p className="mt-4 rounded-2xl bg-sand-50 px-4 py-3 text-[13px] leading-relaxed text-ink-2">
         Recurring commerce grew from <span className="font-semibold text-ink">{Math.round(first * 100)}%</span> to{' '}
-        <span className="font-semibold text-ink">{Math.round(last * 100)}%</span> of LocalDays revenue between the first and last four weeks — the post-visit relationship, not
+        <span className="font-semibold text-ink">{Math.round(last * 100)}%</span> of Fadhal revenue between the first and last four weeks — the post-visit relationship, not
         the ticket, is what compounds.
       </p>
     </div>

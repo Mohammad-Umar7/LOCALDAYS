@@ -74,7 +74,7 @@ export default function HostCommerce() {
               ))}
             </div>
           ) : (
-            <EmptyState icon={<Package className="h-6 w-6" />} title="No LocalDays orders yet" body="Buy from this host’s shop as a customer and it lands here instantly." />
+            <EmptyState icon={<Package className="h-6 w-6" />} title="No Fadhal orders yet" body="Buy from this host’s shop as a customer and it lands here instantly." />
           ))}
 
         {tab === 'subscribers' && (

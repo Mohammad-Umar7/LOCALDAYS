@@ -69,7 +69,7 @@ export const SUPPLIERS: Supplier[] = [
       { cropId: 'tomato', availableKg: 12, pricePerKg: 11 },
       { cropId: 'rocca', availableKg: 4, pricePerKg: 28 },
     ],
-    note: 'Partner farm on LocalDays · organic practices · delivers Wednesdays',
+    note: 'Partner farm on Fadhal · organic practices · delivers Wednesdays',
   },
   {
     id: 'sup-rimal',
@@ -78,7 +78,7 @@ export const SUPPLIERS: Supplier[] = [
     distanceKm: 31,
     status: 'demo-verified',
     offers: [{ cropId: 'tomato', availableKg: 6, pricePerKg: 13 }],
-    note: 'Partner farm on LocalDays · small greenhouse surplus',
+    note: 'Partner farm on Fadhal · small greenhouse surplus',
   },
 ];
 

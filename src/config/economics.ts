@@ -31,5 +31,5 @@ export const PRO_PLAN_FEATURES = [
   'Customer relationships and post-visit follow-ups',
   'Harvest, batch and studio pipeline tools',
   'Financial reporting and payout reconciliation',
-  'LocalDays Intelligence recommendations',
+  'Fadhal Intelligence recommendations',
 ];

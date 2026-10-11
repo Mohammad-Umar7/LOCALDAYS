@@ -340,7 +340,7 @@ function ProviderView({ provider }: { provider: Provider }) {
                 ))}
               </div>
             ) : (
-              <p className="mt-4 text-[14px] text-ink-3">New on LocalDays — no reviews yet.</p>
+              <p className="mt-4 text-[14px] text-ink-3">New on Fadhal — no reviews yet.</p>
             )}
           </div>
 

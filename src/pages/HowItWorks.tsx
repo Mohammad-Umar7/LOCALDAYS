@@ -21,7 +21,7 @@ const GUEST_STEPS = [
 ];
 const HOST_STEPS = [
   { icon: Store, t: 'Apply', d: 'Tell us what you grow, make or know. We check licences and food or marine permits where relevant.' },
-  { icon: BadgeCheck, t: 'Get verified', d: 'A LocalDays visit confirms safety, capacity and what guests can genuinely expect.' },
+  { icon: BadgeCheck, t: 'Get verified', d: 'A Fadhal visit confirms safety, capacity and what guests can genuinely expect.' },
   { icon: Sparkles, t: 'List & host', d: 'Set your sessions, capacity, prices and products. Your page and 3D preview go live.' },
   { icon: Repeat, t: 'Keep the relationship', d: 'Post-visit offers, subscriptions, prepaid experiences and reorders turn guests into regulars.' },
   { icon: Ticket, t: 'Get paid weekly', d: `Commission only on what you sell (${ECONOMICS.experienceCommission * 100}% experiences, ${ECONOMICS.productCommission * 100}% products). Pro tools optional.` },
@@ -31,9 +31,9 @@ const FAQ = [
   ['Are the 3D venues the actual properties?', 'No — they are illustrative previews built to show how a venue could be explored. Verified scans or models of real properties would be clearly labelled as such.'],
   ['How does the Day Composer work?', `It parses your request into explicit constraints (date, party, budget, interests, timing, things to avoid) and searches live slots for the best route, considering drive times and midday heat. In this demo it runs entirely in your browser and can only recommend real records.`],
   ['What counts for a Passport stamp?', 'Only an experience your host verifies with your check-in code. No points for browsing, clicking or sharing.'],
-  ['Who pays for rewards?', 'Each reward names its funder — the host or LocalDays — and has a hard cap, so small businesses are never surprised by a cost.'],
+  ['Who pays for rewards?', 'Each reward names its funder — the host or Fadhal — and has a hard cap, so small businesses are never surprised by a cost.'],
   ['What happens to prepaid experiences?', 'They are customer-funded presales within approved capacity. Funds are held until the experience is delivered, refundable within 14 days, and always refundable if the host can’t offer a slot.'],
-  ['Do you take a booking fee?', 'No. Prices include VAT and guests pay what the host charges. LocalDays earns a commission from the host’s side.'],
+  ['Do you take a booking fee?', 'No. Prices include VAT and guests pay what the host charges. Fadhal earns a commission from the host’s side.'],
 ];
 
 export default function HowItWorks() {
@@ -138,13 +138,13 @@ function MoneySplit() {
               Most of it stays <span className="serif-italic text-clay-500">on the farm.</span>
             </>
           }
-          description="Guests pay the host’s price, VAT included — no booking fee. LocalDays earns only when the host sells, and every split is shown to the host before they list."
+          description="Guests pay the host’s price, VAT included — no booking fee. Fadhal earns only when the host sells, and every split is shown to the host before they list."
         />
         <div className="rounded-[26px] border border-line bg-white p-5 md:p-7">
           <div className="mb-5 flex flex-wrap gap-x-5 gap-y-2 text-[12.5px] text-ink-2" aria-hidden>
             {[
               ['Host keeps', SPLIT_COLORS.host],
-              ['LocalDays commission', SPLIT_COLORS.localdays],
+              ['Fadhal commission', SPLIT_COLORS.localdays],
               ['Card processing', SPLIT_COLORS.processing],
             ].map(([l, c]) => (
               <span key={l} className="inline-flex items-center gap-2">
@@ -157,7 +157,7 @@ function MoneySplit() {
             {rows.map((r, i) => {
               const parts = [
                 { k: 'Host keeps', v: r.split.net, c: SPLIT_COLORS.host },
-                { k: `LocalDays · ${Math.round(r.split.rate * 100)}%`, v: r.split.commission, c: SPLIT_COLORS.localdays },
+                { k: `Fadhal · ${Math.round(r.split.rate * 100)}%`, v: r.split.commission, c: SPLIT_COLORS.localdays },
                 { k: 'Processing', v: r.split.processing, c: SPLIT_COLORS.processing },
               ];
               return (
@@ -197,7 +197,7 @@ function MoneySplit() {
           </div>
           <p className="mt-6 border-t border-line pt-4 text-[12px] leading-relaxed text-ink-3">
             Demo rates from one config file: {ECONOMICS.experienceCommission * 100}% on experiences, {ECONOMICS.productCommission * 100}% on products and subscriptions,{' '}
-            {ECONOMICS.paymentProcessing * 100}% card processing (simulated). Hosts on LocalDays Pro pay the same commission — Pro adds tools, not fees on guests.
+            {ECONOMICS.paymentProcessing * 100}% card processing (simulated). Hosts on Fadhal Pro pay the same commission — Pro adds tools, not fees on guests.
           </p>
         </div>
       </div>

@@ -108,7 +108,7 @@ export function Hero() {
               Explore Experiences
             </Button>
             <Button to="/how-it-works" size="lg" variant="glass">
-              How LocalDays Works
+              How Fadhal Works
             </Button>
           </div>
           {/* Slide indicator */}

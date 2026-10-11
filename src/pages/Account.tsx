@@ -67,7 +67,7 @@ export default function Account() {
         <div className="shell py-20">
           <EmptyState
             icon={<Ticket className="h-6 w-6" />}
-            title="Sign in to see your LocalDays"
+            title="Sign in to see your Fadhal"
             body="Your trips, orders, subscriptions, Signature Blends and Passport live here."
             action={<Button onClick={() => setAuth(true)}>Sign in</Button>}
           />
@@ -84,7 +84,7 @@ export default function Account() {
       <section className="border-b border-line bg-sand-100">
         <div className="shell flex flex-col gap-6 py-10 md:flex-row md:items-end md:justify-between md:py-14">
           <div>
-            <div className="eyebrow">My LocalDays</div>
+            <div className="eyebrow">My Fadhal</div>
             <h1 className="mt-3 font-display text-[40px] leading-tight tracking-tight md:text-[52px]">Marhaba, {user.firstName}.</h1>
             <p className="mt-2 text-[15px] text-ink-2">
               {upcoming.length ? `Next up: ${EXPERIENCE_BY_ID[upcoming[0].experienceId].title}, ${relativeDayLabel(all.todayISO(), upcoming[0].date).toLowerCase()}.` : 'No trips booked — your next local day is waiting.'}
@@ -553,7 +553,7 @@ function Rewards() {
           <p className="mt-1.5 text-[14px] text-ink-2">{r.description}</p>
           <div className="mt-4 rounded-2xl bg-sand-50 p-3 text-[12.5px] text-ink-2">
             <div>
-              <span className="font-semibold text-ink">Funded by:</span> {r.fundedBy.name} ({r.fundedBy.type === 'host' ? 'host-funded' : 'LocalDays-funded'})
+              <span className="font-semibold text-ink">Funded by:</span> {r.fundedBy.name} ({r.fundedBy.type === 'host' ? 'host-funded' : 'Fadhal-funded'})
             </div>
             <div className="mt-1">
               <span className="font-semibold text-ink">Budget:</span> {liveBudget(r, ledger).used.toLocaleString()} / {r.budget.cap.toLocaleString()} {r.budget.unit === 'AED' ? 'AED' : 'redemptions'} used

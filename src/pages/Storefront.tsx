@@ -193,7 +193,7 @@ function Shop({ provider }: { provider: Provider }) {
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="font-display text-[30px] tracking-tight">Everything from {shortProviderName(provider.name)}</h2>
-              <p className="mt-1 text-[14px] text-ink-3">Fulfilled by the host · LocalDays takes a 10% commission on product sales</p>
+              <p className="mt-1 text-[14px] text-ink-3">Fulfilled by the host · Fadhal takes a 10% commission on product sales</p>
             </div>
             {filters.length > 1 && <Tabs value={filter} onChange={setFilter} items={filters} size="sm" />}
           </div>

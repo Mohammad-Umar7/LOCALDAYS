@@ -30,9 +30,9 @@ function icsFor(b: Booking) {
   return [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//LocalDays//Demo//EN',
+    'PRODID:-//Fadhal//Demo//EN',
     'BEGIN:VEVENT',
-    `UID:${b.ref}@localdays.demo`,
+    `UID:${b.ref}@fadhal.demo`,
     `DTSTART;TZID=Asia/Dubai:${start}`,
     `DTEND;TZID=Asia/Dubai:${end}`,
     `SUMMARY:${e.title} — ${p.name}`,
@@ -117,7 +117,7 @@ export default function Confirmation() {
               Print receipt
             </Button>
             <Button to="/me" variant="outline">
-              My LocalDays
+              My Fadhal
             </Button>
           </div>
         </div>
@@ -208,7 +208,7 @@ export default function Confirmation() {
                   </div>
                   <div className="text-[15px] font-semibold">{p.name}</div>
                   <div className="text-[13px] text-ink-2">
-                    {aed(s.price)} per delivery · next {fmtDate(s.nextDelivery)} · manage in My LocalDays
+                    {aed(s.price)} per delivery · next {fmtDate(s.nextDelivery)} · manage in My Fadhal
                   </div>
                 </div>
               </div>
@@ -329,7 +329,7 @@ export default function Confirmation() {
             <div className="flex items-center gap-3 border-b border-line p-5">
               <LogoIcon className="h-9 w-9" />
               <div>
-                <div className="text-[13px] font-semibold">LocalDays</div>
+                <div className="text-[13px] font-semibold">Fadhal</div>
                 <div className="text-[12px] text-ink-3">to {first?.customer.email ?? data.order?.customer.email}</div>
               </div>
             </div>

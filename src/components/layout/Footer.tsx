@@ -10,10 +10,7 @@ export function Footer() {
       <div className="shell relative">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-5">
-              <Logo dark className="h-16 md:h-[72px]" />
-              <span className="font-arabic text-2xl text-paper/50">{BRAND.nameArabic}</span>
-            </div>
+            <Logo dark className="h-16 md:h-[76px]" />
             <p className="mt-6 max-w-sm font-display text-[28px] leading-[1.1] tracking-tight text-paper">
               {BRAND.taglineLead} <span className="serif-italic text-honey-300">{BRAND.taglineEmphasis}</span>
             </p>
@@ -23,12 +20,12 @@ export function Footer() {
           </div>
           <FooterCol title="Experiences" links={CATEGORIES.map((c) => ({ to: `/c/${c.id}`, label: c.name }))} />
           <FooterCol
-            title="LocalDays"
+            title="Fadhal"
             links={[
               { to: '/how-it-works', label: 'How it works' },
               { to: '/compose', label: 'Day Composer' },
-              { to: '/passport', label: 'LocalDays Passport' },
-              { to: '/me', label: 'My LocalDays' },
+              { to: '/passport', label: 'Fadhal Passport' },
+              { to: '/me', label: 'My Fadhal' },
               { to: '/impact', label: 'Business & impact' },
             ]}
           />

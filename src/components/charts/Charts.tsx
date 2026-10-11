@@ -5,7 +5,7 @@ import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 /* ------------------------------------------------------------------ */
-/*  Charts built to the LocalDays data-viz spec: categorical hues in a  */
+/*  Charts built to the Fadhal data-viz spec: categorical hues in a  */
 /*  fixed, validated order; thin marks; 4px rounded data-ends; 2px      */
 /*  surface gaps; hairline grid; legend for ≥2 series; text in ink.     */
 /*  Palette validated (light, white surface): all checks pass; slot 4   */

@@ -163,7 +163,7 @@ export default function Passport() {
                 <div className="absolute inset-3 rounded-[16px] border border-brass-400/40" />
                 <div className="relative flex h-full flex-col items-center justify-center text-center">
                   <div className="font-arabic text-[30px] text-brass-300/90">{BRAND.nameArabic}</div>
-                  <LogoMark tone="foil" className="mt-7 h-14" />
+                  <LogoMark tone="foil" className="mt-6 h-[72px]" />
                   <div className="mt-6 text-[13px] font-bold uppercase tracking-[0.4em] text-brass-300">Passport</div>
                   <div className="mt-1 font-display text-[22px] text-paper">{BRAND.name}</div>
                   <div className="mt-8 rounded-full border border-brass-400/50 px-4 py-2 text-[12px] font-semibold text-brass-300">Tap to open</div>
@@ -228,7 +228,7 @@ export default function Passport() {
                     <Badge tone={has ? 'success' : 'neutral'} icon={has ? <BadgeCheck className="h-3 w-3" /> : <Lock className="h-3 w-3" />}>
                       {has ? 'Unlocked' : 'Locked'}
                     </Badge>
-                    <span className="text-[12px] text-ink-3">{r.fundedBy.type === 'host' ? 'Host-funded' : 'LocalDays-funded'}</span>
+                    <span className="text-[12px] text-ink-3">{r.fundedBy.type === 'host' ? 'Host-funded' : 'Fadhal-funded'}</span>
                   </div>
                   <div className="mt-3 text-[16px] font-semibold">{r.title}</div>
                   <p className="mt-1 text-[13.5px] text-ink-2">{r.description}</p>

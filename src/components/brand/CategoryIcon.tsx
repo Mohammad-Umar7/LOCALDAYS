@@ -1,7 +1,7 @@
 import type { CategoryId } from '@/data/types';
 import { cn } from '@/lib/utils';
 
-/** Custom line icons for the five traditions (drawn for LocalDays, not stock). */
+/** Custom line icons for the five traditions (drawn for Fadhal, not stock). */
 export function CategoryIcon({ id, className, strokeWidth = 1.6 }: { id: CategoryId; className?: string; strokeWidth?: number }) {
   const common = {
     fill: 'none',

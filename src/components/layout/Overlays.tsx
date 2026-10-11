@@ -44,7 +44,7 @@ export function AuthModal() {
     <Modal open={open} onClose={close}>
       <div className="p-7 sm:p-9">
         <LogoMark className="h-12" />
-        <h2 className="mt-5 font-display text-[30px] leading-tight tracking-tight">Welcome to LocalDays</h2>
+        <h2 className="mt-5 font-display text-[30px] leading-tight tracking-tight">Welcome to Fadhal</h2>
         <p className="mt-2 text-[14.5px] text-ink-2">Save experiences, collect Passport stamps and reorder from the hosts you visit.</p>
         {!sent ? (
           <>
@@ -92,7 +92,7 @@ export function AuthModal() {
               onClick={() => {
                 signInAs({ name: name.trim(), email: email.trim() });
                 close();
-                toast({ title: `Welcome, ${name.split(' ')[0]}`, body: 'Your LocalDays account is ready.', tone: 'success' });
+                toast({ title: `Welcome, ${name.split(' ')[0]}`, body: 'Your Fadhal account is ready.', tone: 'success' });
               }}
             >
               Open the magic link
@@ -144,7 +144,7 @@ export function StampCelebration() {
           </div>
           <h3 className="mt-2 font-display text-[32px] leading-tight tracking-tight">You’re a {cat.stamp.title}</h3>
           <p className="mx-auto mt-2 max-w-xs text-[14.5px] text-ink-2">
-            “{exp.title}” is now in your LocalDays Passport. {reward ? 'It also unlocked a reward:' : ''}
+            “{exp.title}” is now in your Fadhal Passport. {reward ? 'It also unlocked a reward:' : ''}
           </p>
           {reward && (
             <div className="mx-auto mt-4 max-w-sm rounded-2xl border border-line bg-white p-4 text-left shadow-ring">

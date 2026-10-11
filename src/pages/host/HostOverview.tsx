@@ -148,7 +148,7 @@ export default function HostOverview() {
         <Panel
           title={
             <span className="inline-flex items-center gap-2">
-              <BrainCircuit className="h-4 w-4 text-clay-500" /> LocalDays Intelligence
+              <BrainCircuit className="h-4 w-4 text-clay-500" /> Fadhal Intelligence
             </span>
           }
           sub="Rule-based insights from your bookings, orders and harvest log"

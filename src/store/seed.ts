@@ -125,7 +125,7 @@ export function seedCustomerHistory(todayISO: string) {
 }
 
 /* ------------------------------------------------------------------------- */
-/*  Other (fictional) LocalDays customers, so a host dashboard opened cold    */
+/*  Other (fictional) Fadhal customers, so a host dashboard opened cold    */
 /*  shows a living business: a few upcoming visits to check in and recent    */
 /*  shop orders. Marked source 'seed': they never touch the demo customer's  */
 /*  account and are excluded from the synthetic 12-week history totals.       */

@@ -152,7 +152,7 @@ function Estimator() {
           {[
             ['Experience sales / month', r.exp],
             ['Product sales / month', r.prod],
-            ['LocalDays fees & processing', -r.fees],
+            ['Fadhal fees & processing', -r.fees],
           ].map(([k, v]) => (
             <div key={k as string} className="flex justify-between border-b border-white/10 py-3 text-[15px]">
               <span className="text-paper/70">{k}</span>
@@ -266,7 +266,7 @@ function Apply() {
           </select>
           <textarea className="input min-h-[110px]" placeholder="What would guests do with you? What do you sell?" />
           <label className="flex items-start gap-2.5 text-[13px] text-ink-2">
-            <input type="checkbox" required className="mt-0.5 h-4 w-4 accent-clay-500" /> I understand LocalDays will verify licences and permits relevant to my activity before listing.
+            <input type="checkbox" required className="mt-0.5 h-4 w-4 accent-clay-500" /> I understand Fadhal will verify licences and permits relevant to my activity before listing.
           </label>
           <Button type="submit" size="lg" icon={<Send className="h-4 w-4" />}>
             Send application

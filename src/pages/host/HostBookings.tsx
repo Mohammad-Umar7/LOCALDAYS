@@ -36,7 +36,7 @@ export default function HostBookings() {
         <Panel
           title="Calendar · next 3 weeks"
           sub="Includes fictional baseline demand plus every booking made in this demo"
-          action={<Tabs size="sm" value={view} onChange={setView} items={[{ id: 'sessions', label: 'Sessions' }, { id: 'guests', label: 'LocalDays guests', count: confirmed.length }]} />}
+          action={<Tabs size="sm" value={view} onChange={setView} items={[{ id: 'sessions', label: 'Sessions' }, { id: 'guests', label: 'Fadhal guests', count: confirmed.length }]} />}
         >
           {view === 'sessions' ? (
             <div className="space-y-4">
@@ -87,7 +87,7 @@ export default function HostBookings() {
               ))}
             </div>
           ) : (
-            <EmptyState icon={<Users className="h-6 w-6" />} title="No LocalDays bookings yet" body="Book something as a customer — it appears here instantly." />
+            <EmptyState icon={<Users className="h-6 w-6" />} title="No Fadhal bookings yet" body="Book something as a customer — it appears here instantly." />
           )}
         </Panel>
 
@@ -130,7 +130,7 @@ export default function HostBookings() {
                   ))}
                 </>
               ) : (
-                'No upcoming LocalDays guests to check in.'
+                'No upcoming Fadhal guests to check in.'
               )}
             </div>
           )}

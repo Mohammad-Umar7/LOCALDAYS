@@ -330,7 +330,7 @@ function CoastalOps() {
             ))}
           </ul>
           <p className="mt-3 text-[12px] leading-relaxed text-ink-3">
-            Fictional operator — documents are marked verified so the demo can take boat bookings. In production LocalDays checks each document and hides boat trips the day one
+            Fictional operator — documents are marked verified so the demo can take boat bookings. In production Fadhal checks each document and hides boat trips the day one
             lapses.
           </p>
         </Panel>

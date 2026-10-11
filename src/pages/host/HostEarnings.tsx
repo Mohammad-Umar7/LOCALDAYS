@@ -23,17 +23,17 @@ export default function HostEarnings() {
     ['Prepaid experiences redeemed', e.gross.presalesRedeemed],
   ];
   const deductions: [string, number, string][] = [
-    ['LocalDays commission', e.commission, `${ECONOMICS.experienceCommission * 100}% experiences · ${ECONOMICS.productCommission * 100}% products · ${ECONOMICS.presaleCommission * 100}% prepaid`],
+    ['Fadhal commission', e.commission, `${ECONOMICS.experienceCommission * 100}% experiences · ${ECONOMICS.productCommission * 100}% products · ${ECONOMICS.presaleCommission * 100}% prepaid`],
     ['Payment processing', e.processing, `${ECONOMICS.paymentProcessing * 100}% passed through at cost`],
     ['Variable costs (estimate)', e.variableCosts, 'ingredients, produce, materials, delivery'],
     ['Fixed costs (estimate)', e.fixedCosts, 'staff and running costs entered by the host'],
-    [`${'LocalDays Pro'} plan`, e.proPlan, 'optional business tools'],
+    [`${'Fadhal Pro'} plan`, e.proPlan, 'optional business tools'],
   ];
   return (
     <div className="space-y-5">
       <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
         <Kpi label="Gross sales · 30 days" value={aed(e.grossTotal)} sub="experiences, products & subscriptions" />
-        <Kpi label="LocalDays commission" value={aed(e.commission)} sub={`${((e.commission / Math.max(1, e.grossTotal)) * 100).toFixed(1)}% effective`} />
+        <Kpi label="Fadhal commission" value={aed(e.commission)} sub={`${((e.commission / Math.max(1, e.grossTotal)) * 100).toFixed(1)}% effective`} />
         <Kpi label="Estimated net earnings" value={aed(e.net)} sub="after all costs" />
         <Kpi label="Next payout (demo)" value={aed(Math.max(0, (e.grossTotal - e.commission - e.processing) / 4))} sub="every Tuesday" />
       </div>
@@ -120,7 +120,7 @@ function RewardsPanel({ providerId }: { providerId: string }) {
                     <div className="mt-0.5 text-[12px] text-ink-3">{r.rules[0]}</div>
                   </div>
                 </div>
-                <Badge tone={hostFunded ? 'warning' : 'success'}>{hostFunded ? 'You fund' : 'LocalDays funds'}</Badge>
+                <Badge tone={hostFunded ? 'warning' : 'success'}>{hostFunded ? 'You fund' : 'Fadhal funds'}</Badge>
               </div>
               <div className="mt-3 flex h-2 gap-[2px]" role="img" aria-label={`${b.used} of ${b.cap} used`}>
                 <span className="h-full rounded-l-[4px] bg-clay-500" style={{ width: `${(b.used / b.cap) * 100}%` }} />
@@ -135,7 +135,7 @@ function RewardsPanel({ providerId }: { providerId: string }) {
                   </div>
                 </div>
                 <div>
-                  <div className="text-ink-3">{hostFunded ? 'Cost to you' : 'Paid by LocalDays'}</div>
+                  <div className="text-ink-3">{hostFunded ? 'Cost to you' : 'Paid by Fadhal'}</div>
                   <div className="font-semibold tabular">{per || r.budget.unit === 'AED' ? aed(spent) : 'No cash cost'}</div>
                 </div>
                 <div>
@@ -176,7 +176,7 @@ function AfterTheVisit({ experiences, after }: { experiences: number; after: num
         </div>
         <div>
           <div className="flex justify-between">
-            <span className="font-semibold">With LocalDays commerce</span>
+            <span className="font-semibold">With Fadhal commerce</span>
             <span className="tabular font-semibold">{aed(total)}</span>
           </div>
           <div className="mt-1 h-2 w-full rounded-[4px] bg-honey-400" />

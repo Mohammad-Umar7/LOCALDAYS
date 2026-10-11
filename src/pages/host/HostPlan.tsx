@@ -38,7 +38,7 @@ export default function HostPlan() {
       <Panel title="Commission & pricing" sub="All rates are illustrative and adjustable in one config file">
         <div className="grid gap-3 sm:grid-cols-2">
           {[
-            { k: 'Experience bookings', v: `${ECONOMICS.experienceCommission * 100}%`, d: 'e.g. AED 200 booking → AED 24 to LocalDays' },
+            { k: 'Experience bookings', v: `${ECONOMICS.experienceCommission * 100}%`, d: 'e.g. AED 200 booking → AED 24 to Fadhal' },
             { k: 'Products & subscriptions', v: `${ECONOMICS.productCommission * 100}%`, d: 'on eligible orders, fulfilled by you' },
             { k: 'Prepaid experiences', v: `${ECONOMICS.presaleCommission * 100}%`, d: 'charged on redemption-based settlement' },
             { k: 'Payment processing', v: `${ECONOMICS.paymentProcessing * 100}%`, d: 'passed through at cost' },

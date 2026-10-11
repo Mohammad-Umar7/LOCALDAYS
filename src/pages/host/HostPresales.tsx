@@ -77,7 +77,7 @@ export default function HostPresales() {
                   <dl className="mt-2 space-y-1.5 text-[13px]">
                     {[
                       ['Customer payments received', aed(cash)],
-                      [`LocalDays commission (${ECONOMICS.presaleCommission * 100}%)`, `−${aed(commission)}`],
+                      [`Fadhal commission (${ECONOMICS.presaleCommission * 100}%)`, `−${aed(commission)}`],
                       ['Released to you (redeemed)', aed(releasedToHost)],
                       ['Held until redemption', aed(held)],
                     ].map(([k, v]) => (
