@@ -1,6 +1,7 @@
 import { useId } from 'react';
 import type { CategoryId } from '@/data/types';
 import { CATEGORY_BY_ID } from '@/data/categories';
+import { BRAND } from '@/config/brand';
 import { cn } from '@/lib/utils';
 
 /** Inner illustration for each tradition, drawn on a 200×200 canvas centred at 100,100. */
@@ -108,7 +109,7 @@ export function Stamp({ id, earned = true, date, region, size = 180, rotate = -8
   const uid = useId().replace(/:/g, '');
   const cat = CATEGORY_BY_ID[id];
   const color = earned ? ink ?? cat.theme.accent : '#B9AE9E';
-  const ring = `${cat.stamp.title.toUpperCase()} · ${region?.toUpperCase() ?? 'SHARJAH'} · LOCALDAYS PASSPORT · `;
+  const ring = `${cat.stamp.title.toUpperCase()} · ${region?.toUpperCase() ?? 'SHARJAH'} · ${BRAND.name.toUpperCase()} PASSPORT · `;
   return (
     <svg
       viewBox="0 0 200 200"
